@@ -1,7 +1,5 @@
 <template>
-  <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="assets/bp-logo-full.svg" />
-  </q-page>
+  <q-page class="flex flex-center transparent"></q-page>
 </template>
 
 <style></style>

@@ -1,14 +1,10 @@
 <template>
   <q-layout view="hHh Lpr fff">
-    <q-header
-      class="bg-primary text-cyan-4 font-primary shadow-9"
-      reveal
-      elevated
-    >
-      <q-toolbar class="row justify-between">
-        <q-toolbar-title class="col-auto bp-logo">
+    <q-header class="bp-header" elevated reveal>
+      <q-toolbar class="row justify-between font-primary">
+        <q-toolbar-title class="col-auto">
           <q-btn
-            :ripple="{ color: 'white' }"
+            class="bp-logo"
             dense
             flat
             rounded
@@ -17,20 +13,28 @@
             <q-avatar class="on-left">
               <img
                 class="bp-logo bp-logo__img"
-                src="statics/app-avatar-38x38.png"
+                src="statics/app-logo-128x128.png"
               />
             </q-avatar>
-            <span class="bp-logo bp-logo__title q-ml-sm text-h5"
+            <span class="gt-xs q-ml-sm text-h5 text-secondary"
               >Бюро Путешествий</span
             >
           </q-btn>
         </q-toolbar-title>
 
-        <span class="col gt-xs mobile-hide q-mr-xl text-h5 text-right"
+        <div
+          class="col-auto lt-sm row q-col-gutter-xs text-subtitle1 text-center"
+        >
+          <div class="col-auto">Бюро</div>
+          <div class="col-8 text-right">Путешествий</div>
+        </div>
+
+        <span class="col gt-xs q-mr-xl text-h5 text-right text-brown-9"
           >+7(707)462-66-69</span
         >
 
         <q-btn
+          class="text-brown-9"
           icon="fab fa-instagram"
           flat
           hidden
@@ -41,71 +45,96 @@
     </q-header>
 
     <q-drawer v-model="drawerLeft" side="left" overlay elevated>
-      <div class="column q-pa-md bg-primary">
-        <div class="q-my-sm font-primary text-info text-right">
-          Оставьте заявку, и мы подберём Вам подходящие туры!
+      <div class="fit q-pa-md bg-orange-7 inset-shadow">
+        <div
+          class="q-my-sm font-primary text-subtitle1 text-brown-9 text-right"
+        >
+          Оставьте заявку, и мы подберём подходящие туры для Вас!
         </div>
 
-        <q-form class="q-mt-md q-pa-sm" @submit="onSubmit" @reset="onReset">
+        <q-form class="q-mt-md q-pa-md" @submit="onSubmit" @reset="onReset">
           <q-input
             v-model="formName"
             label="Ваше имя"
-            color="info"
-            bg-color="green-1"
+            bg-color="orange-3"
+            color="yellow"
+            standout="text-warning"
+            clearable
             dense
-            filled
             rounded
             lazy-rules
-            :rules="[
-              val => (val && val.length > 0) || 'Пожалуйста, заполните поле'
-            ]"
-          />
+            :rules="[val => (val && val.length > 0) || '']"
+          >
+            <template v-slot:prepend>
+              <q-icon name="person" />
+            </template>
+          </q-input>
           <q-input
             v-model="formEmail"
             type="email"
             label="Электронная почта"
-            color="warning"
-            bg-color="green-1"
+            color="info"
+            bg-color="orange-2"
+            standout="text-warning"
+            clearable
             dense
-            filled
+            rounded
             lazy-rules
             :rules="[]"
-          />
+          >
+            <template v-slot:prepend>
+              <q-icon name="mail" />
+            </template>
+          </q-input>
           <q-input
             v-model="formTel"
+            class="justify-between"
             type="tel"
             prefix="+7"
             mask="(###) ###-##-##"
             label="Номер телефона"
             color="secondary"
-            bg-color="green-1"
+            bg-color="orange-3"
+            standout="text-warning"
             dense
-            filled
+            fill-mask
+            rounded
             lazy-rules
             :rules="[]"
-          />
+          >
+            <template v-slot:prepend>
+              <q-icon name="phone" />
+            </template>
+          </q-input>
           <q-input
             v-model="formData"
-            class="q-mb-lg"
             type="date"
-            bg-color="green-1"
+            bg-color="orange-2"
             hint="Предполагаемая дата путешествия"
             dense
-            filled
+            rounded
+            standout
           >
             <template v-slot:prepend>
               <q-icon name="event" />
             </template>
           </q-input>
 
-          <div>
-            <q-btn type="submit" label="Отправить" color="secondary" />
+          <div class="row justify-between q-mt-lg">
             <q-btn
+              type="submit"
+              :loading="loading"
+              label="Отправить"
+              color="accent"
+              push
+              @click="simulateProgress()"
+            />
+            <q-btn
+              class="q-ml-sm"
               type="reset"
               label="Сбросить"
-              color="primary"
-              flat
-              class="q-ml-sm"
+              color="negative"
+              push
             />
           </div>
         </q-form>
@@ -120,7 +149,6 @@
       show-if-above
       overlay
       elevated
-      hidden
     >
       <q-scroll-area class="fit">
         <q-list padding class="menu-list">
@@ -168,15 +196,15 @@
       elevated
     >
       <q-toolbar>
-        <q-toolbar-title class="bp-logo">
-          <q-btn :ripple="false" dense flat rounded @click="scrollToTop">
+        <q-toolbar-title>
+          <q-btn class="bp-logo" dense flat rounded @click="scrollToTop">
             <q-avatar class="on-left">
               <img
                 class="bp-logo bp-logo__img"
-                src="statics/app-avatar-38x38.png"
+                src="statics/app-logo-128x128.png"
               />
             </q-avatar>
-            <span class="bp-logo bp-logo__title capitalize">Наверх</span>
+            <span class="capitalize">Наверх</span>
           </q-btn>
         </q-toolbar-title>
       </q-toolbar>
@@ -193,7 +221,8 @@ export default {
       formTel: "",
       formDate: "",
       drawerLeft: false,
-      drawerRight: true
+      drawerRight: true,
+      loading: false
     };
   },
   methods: {
@@ -211,33 +240,30 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.bp-logo {
-  &__img {
-    animation: spin 1.2s ease-in-out;
+.bp-header
+  background: linear-gradient(145deg, $primary 28%, $warning 63%)
 
-    ^[0]:hover & {
-      animation: spin-h 1.2s ease-in-out;
-    }
-  }
-}
+.bp-logo
+  &__img
+    animation: spin 1.2s ease-in-out
 
-@keyframes spin {
-  0% {
-    transform: rotate(0);
-  }
+  ^[0]:hover &
+    animation: spin-h 1.2s ease-in-out
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+@keyframes spin
+  0%
+    transform: rotate(0)
 
-@keyframes spin-h {
-  0% {
-    transform: rotate(0);
-  }
+  100%
+    transform: rotate(360deg)
 
-  100% {
-    transform: rotate(360deg);
-  }
-}
+@keyframes spin-h
+  0%
+    transform: rotate(0)
+
+  100%
+    transform: rotate(360deg)
+
+.text-subtitle1
+  line-height: 1.42rem
 </style>
