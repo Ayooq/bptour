@@ -1229,6 +1229,11 @@
     sharp "^0.22.1"
     svgo "^1.2.2"
 
+"@quasar/quasar-app-extension-qflashcard@^1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@quasar/quasar-app-extension-qflashcard/-/quasar-app-extension-qflashcard-1.0.0-beta.6.tgz#fba38c6e3b0c9fb84a486c2e50b202b06f996598"
+  integrity sha512-eaIW+FiCCbM9LyKmZDovtKJRyrfq0cCO25yTRyalLWIsuuQ9KW2nQbAJdnZUlq90kvVTCKcswOB46BrLfD6Tsg==
+
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -7556,6 +7561,11 @@ qs@6.7.0:
   version "6.7.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+
+quasar-app-extension-qdatetimepicker@^1.0.0-rc.5:
+  version "1.0.0-rc.5"
+  resolved "https://registry.yarnpkg.com/quasar-app-extension-qdatetimepicker/-/quasar-app-extension-qdatetimepicker-1.0.0-rc.5.tgz#1dbf6b97420d4ab17786ffadbf8566d46fb6494a"
+  integrity sha512-X1CZLjbbJzPfW9CMseCHxpmnCUZGX8hhX38/PYacu2/lM6/3CKmAnlumJ9Asxxt2gthzZ3KILtjQTp13VY4mkQ==
 
 quasar@^1.0.0:
   version "1.0.5"

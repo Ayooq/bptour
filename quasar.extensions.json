@@ -15,5 +15,7 @@
       },
       "build": {}
     }
-  }
+  },
+  "qdatetimepicker": {},
+  "@quasar/qflashcard": {}
 }

@@ -23,7 +23,7 @@
         </q-toolbar-title>
 
         <div
-          class="col-auto lt-sm row q-col-gutter-xs text-subtitle1 text-center"
+          class="col-auto lt-sm row q-col-gutter-xs text-subtitle1 text-center text-brown-9"
         >
           <div class="col-auto">Бюро</div>
           <div class="col-8 text-right">Путешествий</div>
@@ -46,11 +46,9 @@
 
     <q-drawer v-model="drawerLeft" side="left" overlay elevated>
       <div class="fit q-pa-md bg-orange-7 inset-shadow">
-        <div
-          class="q-my-sm font-primary text-subtitle1 text-brown-9 text-right"
-        >
+        <p class="q-my-sm font-primary text-subtitle1 text-brown-9 text-right">
           Оставьте заявку, и мы подберём подходящие туры для Вас!
-        </div>
+        </p>
 
         <q-form class="q-mt-md q-pa-md" @submit="onSubmit" @reset="onReset">
           <q-input
@@ -63,7 +61,7 @@
             dense
             rounded
             lazy-rules
-            :rules="[val => (val && val.length > 0) || '']"
+            :rules="[validationRules.name]"
           >
             <template v-slot:prepend>
               <q-icon name="person" />
@@ -73,8 +71,8 @@
             v-model="formEmail"
             type="email"
             label="Электронная почта"
-            color="info"
             bg-color="orange-2"
+            color="info"
             standout="text-warning"
             clearable
             dense
@@ -93,8 +91,8 @@
             prefix="+7"
             mask="(###) ###-##-##"
             label="Номер телефона"
-            color="secondary"
             bg-color="orange-3"
+            color="secondary"
             standout="text-warning"
             dense
             fill-mask
@@ -107,19 +105,37 @@
             </template>
           </q-input>
           <q-input
-            v-model="formData"
-            type="date"
+            v-model="formDate"
+            mask="##.##.####"
+            anchor="bottom right"
             bg-color="orange-2"
-            hint="Предполагаемая дата путешествия"
+            color="info"
+            hint="Предполагаемая дата
+          путешествия"
+            clearable
             dense
+            fill-mask
+            minimal
             rounded
-            standout
+            standout="text-warning"
+            lazy-rules
+            :rules="[validationRules.date]"
           >
             <template v-slot:prepend>
-              <q-icon name="event" />
+              <q-icon name="event" class="cursor-pointer">
+                <q-popup-proxy
+                  ref="qDateProxy"
+                  transition-show="scale"
+                  transition-hide="scale"
+                >
+                  <q-date
+                    v-model="formDate"
+                    @input="() => $refs.qDateProxy.hide()"
+                  />
+                </q-popup-proxy>
+              </q-icon>
             </template>
           </q-input>
-
           <div class="row justify-between q-mt-lg">
             <q-btn
               type="submit"
@@ -213,17 +229,35 @@
 </template>
 
 <script>
+import { date } from "quasar";
+
 export default {
   data() {
     return {
-      formName: "",
-      formEmail: "",
-      formTel: "",
+      formName: null,
+      formEmail: null,
+      formTel: null,
       formDate: "",
       drawerLeft: false,
       drawerRight: true,
-      loading: false
+      loading: false,
+      validationRules: {
+        name: val => (val && val.length > 0) || "Представьтесь, пожалуйста",
+        date(val) {
+          let reCheck = /^(0[^0]|[12]\d|3[01])\.(0[^0]|1[0-2])\.20(19|20)$/.test(
+            val
+          );
+          const popupText =
+            "заявки рассматриваются только для текущего и следующего календарных годов";
+          return reCheck ? true : popupText;
+        }
+      }
     };
+  },
+  computed: {
+    localeDate() {
+      return date.formatDate(this.formDate, "DD/MM/YYYY");
+    }
   },
   methods: {
     // openURL,
