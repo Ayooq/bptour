@@ -105,7 +105,7 @@
             </template>
           </q-input>
           <q-input
-            v-model="formDate"
+            v-model="localeDate"
             mask="##.##.####"
             anchor="bottom right"
             bg-color="orange-2"
@@ -138,8 +138,8 @@
           </q-input>
           <div class="row justify-between q-mt-lg">
             <q-btn
-              type="submit"
               :loading="loading"
+              type="submit"
               label="Отправить"
               color="accent"
               push
@@ -240,7 +240,7 @@ export default {
       formDate: "",
       drawerLeft: false,
       drawerRight: true,
-      loading: false,
+      loading1: false,
       validationRules: {
         name: val => (val && val.length > 0) || "Представьтесь, пожалуйста",
         date(val) {
@@ -261,6 +261,15 @@ export default {
   },
   methods: {
     // openURL,
+    simulateProgress(number) {
+      // we set loading state
+      this[`loading${number}`] = true;
+      // simulate a delay
+      setTimeout(() => {
+        // we're done, we reset loading state
+        this[`loading${number}`] = false;
+      }, 3000);
+    },
     scrollToTop() {
       const c = document.documentElement.scrollTop || document.body.scrollTop;
 
