@@ -3,7 +3,7 @@
     <section class="hero row">
       <q-parallax class="hero hero__header col-12" :height="windowHeight">
         <template v-slot:media>
-          <img src="https://cdn.quasar.dev/img/parallax2.jpg" />
+          <img src="statics/images/beach3.jpg" />
         </template>
 
         <template v-slot:content="scope">
@@ -11,7 +11,7 @@
             class="absolute column items-center"
             :style="{
               opacity: 0.45 + (1 - scope.percentScrolled) * 0.55,
-              top: scope.percentScrolled * 60 + '%',
+              top: scope.percentScrolled * 30 + '%',
               left: 0,
               right: 0
             }"
@@ -164,8 +164,8 @@ export default {
 
 <style lang="stylus" scoped>
 .custom-caption
-  text-align center
-  padding 12px
-  color white
-  background-color rgba(0, 0, 0, .3)
+  padding: 12px
+  background-color: rgba(0, 0, 0, 0.3)
+  color: white
+  text-align: center
 </style>

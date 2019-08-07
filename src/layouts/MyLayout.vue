@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fff">
-    <q-header class="bp-header" bordered elevated reveal>
+    <q-header class="bp-header" elevated reveal>
       <q-toolbar class="row justify-between font-primary">
         <q-toolbar-title class="col-auto">
           <q-btn
@@ -12,11 +12,11 @@
           >
             <q-avatar class="on-left">
               <img
-                class="bp-logo bp-logo__img"
+                class="bp-logo bp-logo__img bp-logo__img_filled"
                 src="statics/app-logo-128x128.png"
               />
             </q-avatar>
-            <span class="gt-xs q-ml-sm text-h5 text-secondary"
+            <span class="gt-xs q-ml-sm text-h5 text-brown-8"
               >Бюро Путешествий</span
             >
           </q-btn>
@@ -29,7 +29,7 @@
           <div class="col-8 text-right">Путешествий</div>
         </div>
 
-        <span class="col gt-xs q-mr-xl text-h5 text-right text-brown-9"
+        <span class="col gt-xs q-mr-xl text-h5 text-right text-secondary"
           >+7(707)462-66-69</span
         >
 
@@ -45,17 +45,17 @@
     </q-header>
 
     <q-drawer v-model="drawerLeft" side="left" overlay elevated>
-      <div class="fit q-pa-md bg-orange-7 inset-shadow">
-        <p class="q-my-sm font-primary text-subtitle1 text-brown-9 text-right">
-          Оставьте заявку, и мы подберём подходящие туры для Вас!
+      <div class="fit q-pa-md bg-orange-7">
+        <p class="q-my-sm font-primary text-subtitle1 text-brown-8 text-right">
+          Оставьте заявку, и мы подберём подходящие для Вас туры!
         </p>
 
         <q-form class="q-mt-md q-pa-md" @submit="onSubmit" @reset="onReset">
           <q-input
             v-model="formName"
             label="Ваше имя"
+            class="q-mb-sm"
             bg-color="orange-3"
-            color="yellow"
             standout="text-warning"
             clearable
             dense
@@ -71,8 +71,8 @@
             v-model="formEmail"
             type="email"
             label="Электронная почта"
+            class="q-mb-sm"
             bg-color="orange-2"
-            color="info"
             standout="text-warning"
             clearable
             dense
@@ -86,13 +86,12 @@
           </q-input>
           <q-input
             v-model="formTel"
-            class="justify-between"
+            class="q-mb-sm justify-between"
             type="tel"
             prefix="+7"
             mask="(###) ###-##-##"
             label="Номер телефона"
             bg-color="orange-3"
-            color="secondary"
             standout="text-warning"
             dense
             fill-mask
@@ -105,19 +104,15 @@
             </template>
           </q-input>
           <q-input
-            v-model="localeDate"
-            mask="##.##.####"
-            anchor="bottom right"
+            v-model="formDate"
             bg-color="orange-2"
-            color="info"
             hint="Предполагаемая дата
           путешествия"
+            label="Дата"
+            standout="text-warning"
             clearable
             dense
-            fill-mask
-            minimal
             rounded
-            standout="text-warning"
             lazy-rules
             :rules="[validationRules.date]"
           >
@@ -125,23 +120,29 @@
               <q-icon name="event" class="cursor-pointer">
                 <q-popup-proxy
                   ref="qDateProxy"
+                  anchor="center right"
                   transition-show="scale"
                   transition-hide="scale"
                 >
                   <q-date
                     v-model="formDate"
+                    :landscape="$q.screen.gt.xs"
+                    default-view="Months"
+                    mask="DD-MM-YYYY"
+                    dark
                     @input="() => $refs.qDateProxy.hide()"
                   />
                 </q-popup-proxy>
               </q-icon>
             </template>
           </q-input>
+          <hr class="invisible" />
           <div class="row justify-between q-mt-lg">
             <q-btn
               :loading="loading"
               type="submit"
               label="Отправить"
-              color="accent"
+              color="primary"
               push
               @click="simulateProgress()"
             />
@@ -229,8 +230,6 @@
 </template>
 
 <script>
-import { date } from "quasar";
-
 export default {
   data() {
     return {
@@ -242,22 +241,16 @@ export default {
       drawerRight: true,
       loading1: false,
       validationRules: {
-        name: val => (val && val.length > 0) || "Представьтесь, пожалуйста",
+        name: val => !!val || "Представьтесь, пожалуйста",
         date(val) {
-          let reCheck = /^(0[^0]|[12]\d|3[01])\.(0[^0]|1[0-2])\.20(19|20)$/.test(
-            val
-          );
+          let reCheck = /^(0[^0]|[12]\d|3[01])[-./](0[^0]|1[0-2])[-./](20)?(19|20)$/;
+          // let mask = "__.__.____";
           const popupText =
-            "заявки рассматриваются только для текущего и следующего календарных годов";
-          return reCheck ? true : popupText;
+            "Заявки рассматриваются только для текущего и следующего календарных годов";
+          return reCheck.test(val) ? true : popupText;
         }
       }
     };
-  },
-  computed: {
-    localeDate() {
-      return date.formatDate(this.formDate, "DD/MM/YYYY");
-    }
   },
   methods: {
     // openURL,
@@ -284,11 +277,14 @@ export default {
 
 <style lang="stylus" scoped>
 .bp-header
-  background: linear-gradient(145deg, $primary 28%, $warning 63%)
+  background: linear-gradient(145deg, $orange-7 28%, $primary 63%)
 
 .bp-logo
   &__img
     animation: spin 1.2s ease-in-out
+
+    &_filled
+      background-color: $primary
 
   ^[0]:hover &
     animation: spin-h 1.2s ease-in-out
