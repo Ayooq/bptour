@@ -7562,11 +7562,6 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-quasar-app-extension-qdatetimepicker@^1.0.0-rc.5:
-  version "1.0.0-rc.5"
-  resolved "https://registry.yarnpkg.com/quasar-app-extension-qdatetimepicker/-/quasar-app-extension-qdatetimepicker-1.0.0-rc.5.tgz#1dbf6b97420d4ab17786ffadbf8566d46fb6494a"
-  integrity sha512-X1CZLjbbJzPfW9CMseCHxpmnCUZGX8hhX38/PYacu2/lM6/3CKmAnlumJ9Asxxt2gthzZ3KILtjQTp13VY4mkQ==
-
 quasar@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/quasar/-/quasar-1.0.5.tgz#caddfac55fca0779c996dc1b3977a045ae1426e6"

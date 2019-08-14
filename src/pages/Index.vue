@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex transparent">
     <section class="hero row">
-      <q-parallax class="hero hero__header col-12" :height="windowHeight">
+      <q-parallax class="hero hero__header col-12" :height="parallaxHeight">
         <template v-slot:media>
           <img src="statics/images/beach3.jpg" />
         </template>
@@ -10,18 +10,16 @@
           <div
             class="absolute column items-center"
             :style="{
-              opacity: 0.45 + (1 - scope.percentScrolled) * 0.55,
-              top: scope.percentScrolled * 30 + '%',
-              left: 0,
-              right: 0
+              opacity: 0.69 + (1 - scope.percentScrolled) * 0.55,
+              top: scope.percentScrolled * 30 + '%'
             }"
           >
             <img
-              src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg"
+              src="assets/bp-logo-full.svg"
               style="width: 150px; height: 150px"
             />
-            <div class="text-h3 text-white text-center">Quasar Framework</div>
-            <div class="text-h6 text-grey-3 text-center">v{{ $q.version }}</div>
+            <div class="text-h3 text-white text-center">Бюро Путешествий</div>
+            <div class="text-h6 text-grey-3 text-center">Тур-агентство</div>
           </div>
         </template>
       </q-parallax>
@@ -68,7 +66,7 @@
         inventore nisi obcaecati! Facere, laborum!
       </div>
     </section>
-    <section class="main row">
+    <section class="main row window-height">
       <q-carousel
         v-model="slide"
         class="main main_header col-12"
@@ -146,13 +144,9 @@ export default {
   name: "PageIndex",
   data() {
     return {
+      parallaxHeight: window.innerHeight / 1.33,
       slide: "first"
     };
-  },
-  computed: {
-    windowHeight() {
-      return window.innerHeight;
-    }
   },
   methods: {
     showDetails() {
@@ -163,6 +157,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.hero
+  &__footer
+    font-family: serif
+
 .custom-caption
   padding: 12px
   background-color: rgba(0, 0, 0, 0.3)
