@@ -7,10 +7,21 @@ DEBUG = True
 SECRET_KEY = '^oiy8p3srl$8u182j_k)vpuv-6)()+9m*0*o(^!jh4yx=r--5u'
 
 # SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ['*'] 
+ALLOWED_HOSTS = ['*']
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+INSTALLED_APPS += [
+    'debug_toolbar',
+]
+
+MIDDLEWARE += [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+]
+
+INTERNAL_IPS = [
+    '127.0.0.1',
+]
 
 try:
     from .local import *
