@@ -12,10 +12,13 @@ ALLOWED_HOSTS = ['*']
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 INSTALLED_APPS += [
+    'corsheaders',
     'debug_toolbar',
 ]
 
-MIDDLEWARE += [
+MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    *MIDDLEWARE,
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
