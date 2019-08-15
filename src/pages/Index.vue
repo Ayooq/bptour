@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex transparent">
-    <section class="hero row">
+    <section id="home" class="hero row">
       <q-parallax class="hero hero__header col-12" :height="parallaxHeight">
         <template v-slot:media>
           <img src="statics/images/beach3.jpg" />
@@ -66,7 +66,7 @@
         inventore nisi obcaecati! Facere, laborum!
       </div>
     </section>
-    <section class="main row window-height">
+    <section id="tours" class="main row window-height">
       <q-carousel
         v-model="slide"
         class="main main_header col-12"
@@ -128,7 +128,7 @@
         Officia culpa, nesciunt non natus suscipit deserunt incidunt.
       </div>
     </section>
-    <section class="footer row">
+    <section id="about" class="footer row">
       <div class="col-12 q-pa-md">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
         consequuntur, officia ipsa facere repellendus quibusdam, possimus maxime

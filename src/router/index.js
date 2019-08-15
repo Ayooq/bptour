@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 
 import routes from "./routes";
+// import { from } from "rxjs";
 
 Vue.use(VueRouter);
 
@@ -12,7 +13,12 @@ Vue.use(VueRouter);
 
 export default function(/* { store, ssrContext } */) {
   const Router = new VueRouter({
-    scrollBehavior: () => ({ x: 0, y: 0 }),
+    scrollBehavior(to, from, savedPosition) {
+      if (savedPosition) {
+        return savedPosition;
+      }
+      return { x: 0, y: 0 };
+    },
     routes,
 
     // Leave these as is and change from quasar.conf.js instead!
