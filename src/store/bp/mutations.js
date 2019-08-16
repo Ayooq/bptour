@@ -1,6 +1,12 @@
-export const UPDATE_DRAWER_LEFT_STATE = state => {
-  state.drawerLeft = !state.drawerLeft;
-};
-export const UPDATE_DRAWER_RIGHT_STATE = state => {
-  state.drawerRight = !state.drawerRight;
+export default {
+  updDrawerState(state, value) {
+    if (value === "l") {
+      state.drawerLeft = !state.drawerLeft;
+    } else if (value === "r") {
+      state.drawerRight = !state.drawerRight;
+    }
+  },
+  updHeaderTabValue(state, value) {
+    state.tab = value;
+  }
 };

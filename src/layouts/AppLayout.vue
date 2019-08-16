@@ -2,66 +2,60 @@
   <q-layout view="hHh Lpr fff" class="font-primary">
     <AppLayoutQHeader />
 
-    <QDrawerLeft />
-    <QDrawerRight />
+    <AppLayoutQDrawers />
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <q-footer class="bg-blue-grey-10 text-white shadow-21" elevated>
-      <q-toolbar>
-        <q-toolbar-title>
-          <q-btn class="bp-logo" dense flat rounded @click="scrollToTop">
-            <q-avatar class="on-left">
-              <img
-                class="bp-logo bp-logo__img"
-                src="statics/app-logo-128x128.png"
-              />
-            </q-avatar>
-            <span class="capitalize">Наверх</span>
-          </q-btn>
-        </q-toolbar-title>
-      </q-toolbar>
-    </q-footer>
+    <AppLayoutQFooter />
   </q-layout>
 </template>
 
 <script>
 import AppLayoutQHeader from "components/AppLayoutQHeader";
-import QDrawerLeft from "components/QDrawerLeft";
-import QDrawerRight from "components/QDrawerRight";
+import AppLayoutQDrawers from "components/AppLayoutQDrawers";
+import AppLayoutQFooter from "components/AppLayoutQFooter";
 export default {
   components: {
     AppLayoutQHeader,
-    QDrawerLeft,
-    QDrawerRight
+    AppLayoutQDrawers,
+    AppLayoutQFooter
   },
   methods: {
     // openURL,
-    simulateProgress(number) {
-      // we set loading state
-      this[`loading${number}`] = true;
-      // simulate a delay
-      setTimeout(() => {
-        // we're done, we reset loading state
-        this[`loading${number}`] = false;
-      }, 3000);
-    },
-
-    scrollToTop() {
-      const c = document.documentElement.scrollTop || document.body.scrollTop;
-
-      if (c > 0) {
-        window.requestAnimationFrame(this.scrollToTop);
-        window.scrollTo(0, c - c / 12);
-      }
-    }
   }
 };
 </script>
 
-<style lang="stylus" scoped>
+<style lang="stylus">
 .text-subtitle1
   line-height: 1.42rem
+
+.bp-logo
+  &__img
+    animation: spin 1.2s ease-in-out
+
+    &_filled
+      background-color: $secondary
+
+  &__title
+    color: $dark
+
+  ^[0]:hover &__img
+    animation: spin-h 1.2s ease-in-out
+
+@keyframes spin
+  0%
+    transform: rotate(0)
+
+  100%
+    transform: rotate(360deg)
+
+@keyframes spin-h
+  0%
+    transform: rotate(0)
+
+  100%
+    transform: rotate(360deg)
 </style>

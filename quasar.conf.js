@@ -77,6 +77,8 @@ module.exports = function(ctx) {
       open: true // opens browser window automatically
     },
 
+    htmlVariables: { productName: "Бюро Путешествий" },
+
     animations: "all", // --- includes all animations
     // animations: [],
 

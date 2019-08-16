@@ -8,21 +8,19 @@
     <div
       class="error error__content fixed-right font-primary text-center transparent"
     >
-      <!-- <p>
-        <img
-          src="assets/bp-logo-full.svg"
-          style="width:30vw;max-width:300px;"
-        />
-      </p>-->
-      <h4 class="error error__status">
+      <h4 class="error error__status q-mx-lg">
         Похоже, Вы выбрали не тот маршрут...
         <strong>(404)</strong>
       </h4>
-      <h6 class="error error__text">
+      <h6 class="error error__text q-mx-lg">
         Не переживайте, мы готовы указать Вам верное направление! С нами Вы
         никогда не заблудитесь!
       </h6>
-      <q-btn class="error error__button" rounded @click="$router.push('/')"
+      <q-btn
+        class="error error__button"
+        glossy
+        rounded
+        @click="$router.push('/')"
         >На главную</q-btn
       >
     </div>
@@ -37,19 +35,12 @@ export default {
 
 <style lang="stylus" scoped>
 .error
-  &__content
-    margin-right: 5vw
-
-  &__status
-    color: $dark
-
-  &__text
-    margin: -1em
+  &__status, &__text
     color: $dark
 
   &__button
-    margin-top: 4em
+    margin-top: 2em
     width: 150px
-    background-color: $positive
+    background-color: $primary
     color: $light
 </style>

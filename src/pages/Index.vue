@@ -1,29 +1,43 @@
 <template>
   <q-page class="flex transparent">
     <section id="home" class="hero row">
-      <q-parallax class="hero hero__header col-12" :height="parallaxHeight">
+      <q-parallax :height="parallaxHeight" class="hero hero__header col-12">
         <template v-slot:media>
           <img src="statics/images/beach3.jpg" />
         </template>
 
         <template v-slot:content="scope">
           <div
-            class="absolute column items-center"
+            class="fit absolute column items-center justify-center"
             :style="{
-              opacity: 0.69 + (1 - scope.percentScrolled) * 0.55,
-              top: scope.percentScrolled * 30 + '%'
+              opacity: 0.82 + (0.6 - scope.percentScrolled) * 0.92
             }"
           >
             <img
+              class="hero hero__logo col-auto"
               src="assets/bp-logo-full.svg"
               style="width: 150px; height: 150px"
             />
-            <div class="text-h3 text-white text-center">Бюро Путешествий</div>
-            <div class="text-h6 text-grey-3 text-center">Тур-агентство</div>
+            <span class="hero hero__subtitle col-auto text-h6"
+              >Тур-агентство</span
+            >
+            <p class="hero hero__title col-2 text-h3 text-center">
+              Бюро Путешествий
+            </p>
+            <q-btn
+              v-scroll-to="'#tours'"
+              class="col-1"
+              label="Начать путешествие"
+              color="primary"
+              glossy
+              push
+              rounded
+              unelevated
+            />
           </div>
         </template>
       </q-parallax>
-      <div class="hero hero__footer col-12 q-pa-md">
+      <div id="about" class="hero hero__footer col-12 q-pa-md">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
         maiores fugit eum! Odio rem iste error cum distinctio, praesentium
         explicabo vitae ut, debitis officia sapiente ipsam, mollitia natus
@@ -128,7 +142,7 @@
         Officia culpa, nesciunt non natus suscipit deserunt incidunt.
       </div>
     </section>
-    <section id="about" class="footer row">
+    <section id="contacts" class="footer row">
       <div class="col-12 q-pa-md">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
         consequuntur, officia ipsa facere repellendus quibusdam, possimus maxime
@@ -144,9 +158,14 @@ export default {
   name: "PageIndex",
   data() {
     return {
-      parallaxHeight: window.innerHeight / 1.33,
+      currentHeight: window.innerHeight,
       slide: "first"
     };
+  },
+  computed: {
+    parallaxHeight() {
+      return this.currentHeight / 1.33;
+    }
   },
   methods: {
     showDetails() {
@@ -158,6 +177,9 @@ export default {
 
 <style lang="stylus" scoped>
 .hero
+  &__subtitle, &__title
+    color: $light
+
   &__footer
     font-family: serif
 

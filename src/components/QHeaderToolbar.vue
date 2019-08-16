@@ -1,7 +1,7 @@
 <template>
   <q-toolbar>
     <q-toolbar-title shrink>
-      <q-btn class="bp-logo" dense flat rounded @click="toggleDrawer('l')">
+      <q-btn class="bp-logo" dense flat rounded @click="toggleDrawerLeft">
         <q-avatar class="on-left">
           <img
             class="bp-logo bp-logo__img bp-logo__img_filled"
@@ -41,7 +41,7 @@
       <template v-slot:label>
         <div class="row items-center no-wrap">
           <div class="text-center">Навигация</div>
-          <q-icon right name="map" />
+          <q-icon name="fas fa-road" right />
         </div>
       </template>
       <q-list>
@@ -51,8 +51,11 @@
         <q-item v-scroll-to="'#tours'" clickable @click="tab = 'tours'">
           <q-item-section>Туры</q-item-section>
         </q-item>
-        <q-item v-scroll-to="'#about'" clickable @click="tab = 'info'">
-          <q-item-section>Информация</q-item-section>
+        <q-item v-scroll-to="'#about'" clickable @click="tab = null">
+          <q-item-section>О нас</q-item-section>
+        </q-item>
+        <q-item v-scroll-to="'#contacts'" clickable @click="tab = null">
+          <q-item-section>Контакты</q-item-section>
         </q-item>
       </q-list>
     </q-btn-dropdown>
@@ -67,7 +70,7 @@
       flat
       disable
       round
-      @click="toggleDrawer('r')"
+      @click="toggleDrawerRight"
     />
   </q-toolbar>
 </template>
@@ -75,48 +78,41 @@
 <script>
 export default {
   name: "QHeaderToolbar",
-  data() {
-    return {
-      tab: "home"
-    };
+  computed: {
+    drawerLeft: {
+      get() {
+        return this.$store.state.bp.drawerLeft;
+      },
+      set(val) {
+        this.$store.commit("bp/updDrawerState", val);
+      }
+    },
+    drawerRight: {
+      get() {
+        return this.$store.state.bp.drawerRight;
+      },
+      set(val) {
+        this.$store.commit("bp/updDrawerState", val);
+      }
+    },
+    tab: {
+      get() {
+        return this.$store.state.bp.tab;
+      },
+      set(val) {
+        this.$store.commit("bp/updHeaderTabValue", val);
+      }
+    }
   },
   methods: {
-    toggleDrawer(side) {
-      if (side === "l") {
-        this.$store.commit("bp/UPDATE_DRAWER_LEFT_STATE");
-      } else if (side === "r") {
-        this.$store.commit("bp/UPDATE_DRAWER_RIGHT_STATE");
-      }
+    toggleDrawerLeft() {
+      return this.drawerLeft("l");
+    },
+    toggleDrawerRight() {
+      return this.drawerRight("r");
     }
   }
 };
 </script>
 
-<style lang="stylus" scoped>
-.bp-logo
-  &__img
-    animation: spin 1.2s ease-in-out
-
-    &_filled
-      background-color: $primary
-
-  &__title
-    color: $dark
-
-  ^[0]:hover &__img
-    animation: spin-h 1.2s ease-in-out
-
-@keyframes spin
-  0%
-    transform: rotate(0)
-
-  100%
-    transform: rotate(360deg)
-
-@keyframes spin-h
-  0%
-    transform: rotate(0)
-
-  100%
-    transform: rotate(360deg)
-</style>
+<style lang="stylus"></style>

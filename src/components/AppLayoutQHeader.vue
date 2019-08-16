@@ -17,5 +17,5 @@ export default {
 
 <style lang="stylus" scoped>
 .bp-header
-  background: linear-gradient(145deg, $secondary 29%, $primary 63%)
+  background: linear-gradient(145deg, $primary 29%, $secondary 63%)
 </style>
