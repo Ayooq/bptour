@@ -1,7 +1,7 @@
 <template>
   <q-page class="flex transparent">
     <section id="home" class="hero row">
-      <q-parallax :height="parallaxHeight" class="hero hero__header col-12">
+      <q-parallax class="hero hero__header col-12">
         <template v-slot:media>
           <img src="statics/images/beach3.jpg" />
         </template>
@@ -162,11 +162,6 @@ export default {
       slide: "first"
     };
   },
-  computed: {
-    parallaxHeight() {
-      return this.currentHeight / 1.33;
-    }
-  },
   methods: {
     showDetails() {
       // this.$router
@@ -179,6 +174,9 @@ export default {
 .hero
   &__subtitle, &__title
     color: $light
+
+  &__header
+    min-height: 50%
 
   &__footer
     font-family: serif

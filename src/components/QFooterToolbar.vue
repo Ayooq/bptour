@@ -11,13 +11,26 @@
         <span class="capitalize">Наверх</span>
       </q-btn>
     </q-toolbar-title>
-    <span class="col-auto">Все права защищены. &copy; 2019</span>
+    <span class="col">Все права защищены. &copy; 2019</span>
+    <q-btn
+      class="on-right text-light"
+      icon="fab fa-instagram"
+      flat
+      disable
+      round
+      @click="goToAddress"
+    />
   </q-toolbar>
 </template>
 
 <script>
 export default {
-  name: "QFooterToolbar"
+  name: "QFooterToolbar",
+  methods: {
+    goToAddress() {
+      // @TODO
+    }
+  }
 };
 </script>
 
