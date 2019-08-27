@@ -254,6 +254,9 @@ export default {
 </script>
 
 <style lang="stylus">
+.text-subtitle1
+  line-height: 1.42rem
+
 .drawer-left
   &__heading
     color: $dark

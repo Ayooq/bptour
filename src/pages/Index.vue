@@ -1,42 +1,107 @@
 <template>
   <q-page class="flex transparent">
-    <section id="home" class="hero row">
-      <q-parallax class="hero hero__header col-12">
+    <section id="home" class="hero full-width">
+      <q-parallax :height="parallaxHeight">
         <template v-slot:media>
           <img src="statics/images/beach3.jpg" />
         </template>
 
         <template v-slot:content="scope">
           <div
-            class="fit absolute column items-center justify-center"
+            class="row items-end justify-center"
             :style="{
               opacity: 0.82 + (0.6 - scope.percentScrolled) * 0.92
             }"
           >
             <img
-              class="hero hero__logo col-auto"
+              class="hero hero__logo col-md-3 q-mb-sm"
               src="assets/bp-logo-full.svg"
-              style="width: 150px; height: 150px"
             />
-            <span class="hero hero__subtitle col-auto text-h6"
-              >Тур-агентство</span
-            >
-            <p class="hero hero__title col-2 text-h3 text-center">
-              Бюро Путешествий
-            </p>
-            <q-btn
-              v-scroll-to="'#tours'"
-              class="col-1"
-              label="Начать путешествие"
-              color="primary"
-              glossy
-              push
-              rounded
-              unelevated
-            />
+            <div class="col-md-9 col-auto column items-center">
+              <span class="hero hero__subtitle gt-xs text-h6 q-pl-xl q-ml-xl"
+                >Тур-агентство</span
+              >
+              <p class="hero hero__title text-h3 text-center">
+                Бюро Путешествий
+              </p>
+              <q-btn
+                v-scroll-to="'#tours'"
+                class="hero hero__cta q-mb-sm"
+                label="Начать путешествие"
+                glossy
+                push
+                rounded
+                unelevated
+              />
+            </div>
           </div>
         </template>
       </q-parallax>
+    </section>
+
+    <section id="tours" class="main full-width q-px-xl">
+      <q-card class="main main__content q-my-xl q-py-xl" bordered>
+        <div class="q-gutter-xl">
+          <q-card-section>
+            <q-item-label class="text-h1 text-center text-deep-orange-12"
+              >Горящие туры</q-item-label
+            >
+          </q-card-section>
+
+          <q-card-section>
+            <q-carousel
+              v-model="slide"
+              class="main main_header col-12"
+              height="500px"
+              arrows
+              animated
+              autoplay
+              infinite
+            >
+              <q-carousel-slide
+                name="first"
+                img-src="https://cdn.quasar.dev/img/mountains.jpg"
+                @click="showDetails"
+              >
+                <div class="absolute-bottom custom-caption">
+                  <div class="text-h2">First stop</div>
+                  <div class="text-subtitle1">Mountains</div>
+                </div>
+              </q-carousel-slide>
+              <q-carousel-slide
+                name="second"
+                img-src="https://cdn.quasar.dev/img/parallax1.jpg"
+              >
+                <div class="absolute-bottom custom-caption">
+                  <div class="text-h2">Second stop</div>
+                  <div class="text-subtitle1">Famous City</div>
+                </div>
+              </q-carousel-slide>
+              <q-carousel-slide
+                name="third"
+                img-src="https://cdn.quasar.dev/img/parallax2.jpg"
+              >
+                <div class="absolute-bottom custom-caption">
+                  <div class="text-h2">Third stop</div>
+                  <div class="text-subtitle1">Famous Bridge</div>
+                </div>
+              </q-carousel-slide>
+            </q-carousel>
+          </q-card-section>
+
+          <q-card-section>
+            <div>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+              dignissimos non voluptatem, nihil voluptatum culpa cum corporis
+              odio reprehenderit illo. Quo ducimus architecto mollitia minus
+              maxime in, voluptates voluptate beatae?
+            </div>
+          </q-card-section>
+        </div>
+      </q-card>
+    </section>
+
+    <section id="about" class="about row">
       <div id="about" class="hero hero__footer col-12 q-pa-md">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
         maiores fugit eum! Odio rem iste error cum distinctio, praesentium
@@ -80,68 +145,7 @@
         inventore nisi obcaecati! Facere, laborum!
       </div>
     </section>
-    <section id="tours" class="main row window-height">
-      <q-carousel
-        v-model="slide"
-        class="main main_header col-12"
-        height="400px"
-        arrows
-        animated
-        autoplay
-        infinite
-      >
-        <q-carousel-slide
-          name="first"
-          img-src="https://cdn.quasar.dev/img/mountains.jpg"
-          @click="showDetails"
-        >
-          <div class="absolute-bottom custom-caption">
-            <div class="text-h2">First stop</div>
-            <div class="text-subtitle1">Mountains</div>
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide
-          name="second"
-          img-src="https://cdn.quasar.dev/img/parallax1.jpg"
-        >
-          <div class="absolute-bottom custom-caption">
-            <div class="text-h2">Second stop</div>
-            <div class="text-subtitle1">Famous City</div>
-          </div>
-        </q-carousel-slide>
-        <q-carousel-slide
-          name="third"
-          img-src="https://cdn.quasar.dev/img/parallax2.jpg"
-        >
-          <div class="absolute-bottom custom-caption">
-            <div class="text-h2">Third stop</div>
-            <div class="text-subtitle1">Famous Bridge</div>
-          </div>
-        </q-carousel-slide>
-      </q-carousel>
-      <div class="col-12 q-pa-md">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio
-        asperiores placeat eligendi iure. Unde assumenda velit exercitationem,
-        provident dolor culpa veniam laborum libero, qui illo dolore eos in
-        optio sit! Placeat, saepe eius! Maiores provident architecto quis
-        facilis odit officia placeat sit voluptates accusantium temporibus odio
-        deserunt tempore earum aliquid ut, quibusdam modi id soluta aut dolore
-        obcaecati. Impedit, ut. Animi quasi iste at in reprehenderit ullam
-        ducimus dolore expedita excepturi, natus, esse aspernatur similique,
-        accusantium atque! Nemo, iure excepturi aliquam esse illo, veniam,
-        quibusdam consequuntur rerum error alias optio. Harum iste nisi maxime
-        possimus ullam dolorum esse repudiandae accusamus excepturi voluptatem
-        in expedita, quisquam quod ratione, laborum voluptatum repellendus nobis
-        praesentium cupiditate reprehenderit consequuntur sequi, voluptas
-        aliquam atque! Esse. Cupiditate veritatis ut harum placeat aut fugit
-        pariatur voluptatibus sunt quam vel. Blanditiis velit accusantium ea,
-        ratione, suscipit temporibus corporis excepturi magnam non delectus,
-        modi nulla sed neque numquam dolorem. Voluptatem nesciunt exercitationem
-        delectus qui nisi assumenda animi ea consequuntur veniam quos dolor,
-        magni eos adipisci omnis facilis molestiae illum architecto eveniet.
-        Officia culpa, nesciunt non natus suscipit deserunt incidunt.
-      </div>
-    </section>
+
     <section id="contacts" class="footer row">
       <div class="col-12 q-pa-md">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
@@ -158,9 +162,13 @@ export default {
   name: "PageIndex",
   data() {
     return {
-      currentHeight: window.innerHeight,
       slide: "first"
     };
+  },
+  computed: {
+    parallaxHeight() {
+      return window.innerHeight;
+    }
   },
   methods: {
     showDetails() {
@@ -172,14 +180,26 @@ export default {
 
 <style lang="stylus" scoped>
 .hero
-  &__subtitle, &__title
-    color: $light
+  color: $light
 
-  &__header
-    min-height: 50%
+  &__logo
+    max-width: 12rem
+    max-height: 12rem
 
-  &__footer
-    font-family: serif
+  &__subtitle
+    margin-bottom: -17px
+
+  &__cta
+    background-color: $primary
+    color: $dark
+    font-size: 1.3em
+
+.main
+  background-color: $blue-grey-10
+
+  &__content
+    margin-top: -7rem
+    background-color: #b5fdff
 
 .custom-caption
   padding: 12px
