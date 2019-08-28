@@ -2,23 +2,28 @@
   <q-page class="flex transparent">
     <section id="home" class="hero full-width">
       <q-parallax :height="parallaxHeight">
-        <template v-slot:media>
+        <template #media>
           <img src="statics/images/beach3.jpg" />
         </template>
 
-        <template v-slot:content="scope">
+        <template #content="scope">
           <div
-            class="row items-end justify-center"
+            class="absolute row items-center justify-center q-pa-lg"
             :style="{
-              opacity: 0.82 + (0.6 - scope.percentScrolled) * 0.92
+              opacity: 0.82 + (0.6 - scope.percentScrolled) * 0.92,
+              left: 0,
+              top: 0,
+              right: 0,
+              bottom: scope.percentScrolled * 50 + '%'
             }"
           >
             <img
-              class="hero hero__logo col-md-3 q-mb-sm"
+              class="hero hero__logo col-md-6 q-my-sm"
               src="assets/bp-logo-full.svg"
             />
-            <div class="col-md-9 col-auto column items-center">
-              <span class="hero hero__subtitle gt-xs text-h6 q-pl-xl q-ml-xl"
+            <div class="col-md-auto column items-center">
+              <span
+                class="hero hero__subtitle gt-xs text-h6 q-ml-xl q-mt-lg q-pl-xl"
                 >Тур-агентство</span
               >
               <p class="hero hero__title text-h3 text-center">
@@ -43,15 +48,13 @@
       <q-card class="main main__content q-my-xl q-py-xl" bordered>
         <div class="q-gutter-xl">
           <q-card-section>
-            <q-item-label class="text-h1 text-center text-deep-orange-12"
+            <q-item-label
+              class="main main__label text-h1 text-center q-pa-xl inset-shadow"
               >Горящие туры</q-item-label
             >
-          </q-card-section>
-
-          <q-card-section>
             <q-carousel
               v-model="slide"
-              class="main main_header col-12"
+              class="main main_header col-12 shadow-24"
               height="500px"
               arrows
               animated
@@ -183,8 +186,8 @@ export default {
   color: $light
 
   &__logo
-    max-width: 12rem
-    max-height: 12rem
+    max-width: 14rem
+    max-height: 14rem
 
   &__subtitle
     margin-bottom: -17px
@@ -199,11 +202,15 @@ export default {
 
   &__content
     margin-top: -7rem
-    background-color: #b5fdff
+    background: radial-gradient(circle, $primary 0, $deep-orange-12 100%)
+
+  &__label
+    background-color: $deep-orange-10
+    color: $warning
 
 .custom-caption
   padding: 12px
   background-color: rgba(0, 0, 0, 0.3)
-  color: white
+  color: $warning
   text-align: center
 </style>

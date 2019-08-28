@@ -1,18 +1,18 @@
 <template>
   <div class="error">
     <img
-      class="error error__bg fit absolute"
+      class="error error__bg fix absolute"
       src="statics/images/plane.jpg"
       alt="bg"
     />
     <div
-      class="error error__content fixed-right font-primary text-center transparent"
+      class="error error__content fixed-right font-primary text-center q-pa-xl"
     >
-      <h4 class="error error__status q-mx-lg">
+      <h4 class="error error__status">
         Похоже, Вы выбрали не тот маршрут...
         <strong>(404)</strong>
       </h4>
-      <h6 class="error error__text q-mx-lg">
+      <h6 class="error error__text">
         Не переживайте, мы готовы указать Вам верное направление! С нами Вы
         никогда не заблудитесь!
       </h6>
@@ -39,8 +39,9 @@ export default {
     color: $dark
 
   &__button
-    margin-top: 2em
+    margin-top: 1.5rem
     width: 150px
     background-color: $primary
     color: $light
+    font-size: 1.3em
 </style>
