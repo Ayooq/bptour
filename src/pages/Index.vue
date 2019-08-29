@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex transparent">
+  <q-page class="index flex transparent no-scroll">
     <section id="home" class="hero full-width">
       <q-parallax :height="parallaxHeight">
         <template #media>
@@ -8,7 +8,7 @@
 
         <template #content="scope">
           <div
-            class="absolute row items-center justify-center q-pa-lg"
+            class="absolute row justify-center items-center q-pa-lg"
             :style="{
               opacity: 0.82 + (0.6 - scope.percentScrolled) * 0.92,
               left: 0,
@@ -23,7 +23,7 @@
             />
             <div class="col-md-auto column items-center">
               <span
-                class="hero hero__subtitle gt-xs text-h6 q-ml-xl q-mt-lg q-pl-xl"
+                class="hero hero__subtitle gt-xs q-ml-xl q-mt-lg q-pl-xl text-h6"
                 >Тур-агентство</span
               >
               <p class="hero hero__title text-h3 text-center">
@@ -44,18 +44,19 @@
       </q-parallax>
     </section>
 
-    <section id="tours" class="main full-width q-px-xl">
-      <q-card class="main main__content q-my-xl q-py-xl" bordered>
+    <section id="tours" class="main window-width q-px-xl">
+      <q-card class="card card__content q-my-xl q-py-xl">
         <div class="q-gutter-xl">
           <q-card-section>
-            <q-item-label
-              class="main main__label text-h1 text-center q-pa-xl inset-shadow"
+            <q-item-label class="card card__label q-pa-xl inset-shadow text-h1"
               >Горящие туры</q-item-label
             >
             <q-carousel
               v-model="slide"
-              class="main main_header col-12 shadow-24"
+              class="card card_header col-12 shadow-24"
               height="500px"
+              transition-next="jump-left"
+              transition-prev="jump-right"
               arrows
               animated
               autoplay
@@ -66,7 +67,7 @@
                 img-src="https://cdn.quasar.dev/img/mountains.jpg"
                 @click="showDetails"
               >
-                <div class="absolute-bottom custom-caption">
+                <div class="card card__caption absolute-bottom">
                   <div class="text-h2">First stop</div>
                   <div class="text-subtitle1">Mountains</div>
                 </div>
@@ -75,7 +76,7 @@
                 name="second"
                 img-src="https://cdn.quasar.dev/img/parallax1.jpg"
               >
-                <div class="absolute-bottom custom-caption">
+                <div class="card card__caption absolute-bottom">
                   <div class="text-h2">Second stop</div>
                   <div class="text-subtitle1">Famous City</div>
                 </div>
@@ -84,7 +85,7 @@
                 name="third"
                 img-src="https://cdn.quasar.dev/img/parallax2.jpg"
               >
-                <div class="absolute-bottom custom-caption">
+                <div class="card card__caption absolute-bottom">
                   <div class="text-h2">Third stop</div>
                   <div class="text-subtitle1">Famous Bridge</div>
                 </div>
@@ -93,12 +94,12 @@
           </q-card-section>
 
           <q-card-section>
-            <div>
+            <h4 class="card card__text">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
               dignissimos non voluptatem, nihil voluptatum culpa cum corporis
               odio reprehenderit illo. Quo ducimus architecto mollitia minus
               maxime in, voluptates voluptate beatae?
-            </div>
+            </h4>
           </q-card-section>
         </div>
       </q-card>
@@ -150,7 +151,7 @@
     </section>
 
     <section id="contacts" class="footer row">
-      <div class="col-12 q-pa-md">
+      <div class="col-12 q-ma-xl">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
         consequuntur, officia ipsa facere repellendus quibusdam, possimus maxime
         aut eaque sint error eveniet omnis sapiente ullam? Nulla quos
@@ -182,6 +183,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.index
+  color: $dark
+
 .hero
   color: $light
 
@@ -200,17 +204,22 @@ export default {
 .main
   background-color: $blue-grey-10
 
+.card
+  color: $warning
+  text-align: center
+
   &__content
     margin-top: -7rem
     background: radial-gradient(circle, $primary 0, $deep-orange-12 100%)
 
   &__label
     background-color: $deep-orange-10
-    color: $warning
 
-.custom-caption
-  padding: 12px
-  background-color: rgba(0, 0, 0, 0.3)
-  color: $warning
-  text-align: center
+  &__caption
+    padding: 12px
+    background-color: rgba(0, 0, 0, 0.3)
+
+  &__text
+    color: $dark
+    text-align: justify
 </style>
