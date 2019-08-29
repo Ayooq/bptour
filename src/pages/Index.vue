@@ -1,5 +1,5 @@
 <template>
-  <q-page class="index flex transparent no-scroll">
+  <q-page class="flex transparent no-scroll bg-light">
     <section id="home" class="hero full-width">
       <q-parallax :height="parallaxHeight">
         <template #media>
@@ -44,64 +44,54 @@
       </q-parallax>
     </section>
 
-    <section id="tours" class="main window-width q-px-xl">
-      <q-card class="card card__content q-my-xl q-py-xl">
-        <div class="q-gutter-xl">
-          <q-card-section>
-            <q-item-label class="card card__label q-pa-xl inset-shadow text-h1"
-              >Горящие туры</q-item-label
+    <section id="tours" class="tours relative-position q-px-xl bg-dark">
+      <q-card class="tours tours__content tours__content_bg q-mb-xl q-pt-xl">
+        <q-card-section>
+          <q-item-label class="tours tours__label q-pa-xl inset-shadow text-h1"
+            >Горящие туры</q-item-label
+          >
+          <q-carousel
+            v-model="slide"
+            class="shadow-24"
+            height="500px"
+            transition-next="jump-left"
+            transition-prev="jump-right"
+            arrows
+            animated
+            autoplay
+            infinite
+          >
+            <q-carousel-slide
+              v-scroll-to="'#details'"
+              v-for="i in images"
+              :key="i"
+              :name="i"
+              :img-src="i"
+              @click="showDetails"
             >
-            <q-carousel
-              v-model="slide"
-              class="card card_header col-12 shadow-24"
-              height="500px"
-              transition-next="jump-left"
-              transition-prev="jump-right"
-              arrows
-              animated
-              autoplay
-              infinite
-            >
-              <q-carousel-slide
-                name="first"
-                img-src="https://cdn.quasar.dev/img/mountains.jpg"
-                @click="showDetails"
-              >
-                <div class="card card__caption absolute-bottom">
-                  <div class="text-h2">First stop</div>
-                  <div class="text-subtitle1">Mountains</div>
-                </div>
-              </q-carousel-slide>
-              <q-carousel-slide
-                name="second"
-                img-src="https://cdn.quasar.dev/img/parallax1.jpg"
-              >
-                <div class="card card__caption absolute-bottom">
-                  <div class="text-h2">Second stop</div>
-                  <div class="text-subtitle1">Famous City</div>
-                </div>
-              </q-carousel-slide>
-              <q-carousel-slide
-                name="third"
-                img-src="https://cdn.quasar.dev/img/parallax2.jpg"
-              >
-                <div class="card card__caption absolute-bottom">
-                  <div class="text-h2">Third stop</div>
-                  <div class="text-subtitle1">Famous Bridge</div>
-                </div>
-              </q-carousel-slide>
-            </q-carousel>
-          </q-card-section>
+              <div id="details" class="tours tours__caption absolute-bottom">
+                <div class="q-py-md text-h2">{{ slideTitle }}</div>
+                <div class="q-py-md text-h6">{{ slideSubtitle }}</div>
+              </div>
+            </q-carousel-slide>
+          </q-carousel>
+        </q-card-section>
 
-          <q-card-section>
-            <h4 class="card card__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-              dignissimos non voluptatem, nihil voluptatum culpa cum corporis
-              odio reprehenderit illo. Quo ducimus architecto mollitia minus
-              maxime in, voluptates voluptate beatae?
-            </h4>
-          </q-card-section>
-        </div>
+        <q-card-section>
+          <h4 class="tours tours__text q-pa-md">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
+            dignissimos non voluptatem, nihil voluptatum culpa cum corporis odio
+            reprehenderit illo. Quo ducimus architecto mollitia minus maxime in,
+            voluptates voluptate beatae? Lorem ipsum dolor sit amet consectetur,
+            adipisicing elit. Perspiciatis iure commodi, Lorem ipsum dolor, sit
+            amet consectetur adipisicing elit. Repellat, autem quis fugit
+            placeat, quidem explicabo odit est eius velit minima doloremque
+            delectus vero facilis commodi? Blanditiis suscipit recusandae
+            distinctio doloribus. voluptatum, explicabo vero dicta accusamus
+            numquam optio dignissimos totam sed harum necessitatibus ipsam
+            magnam delectus, tenetur dolor a. Placeat?
+          </h4>
+        </q-card-section>
       </q-card>
     </section>
 
@@ -166,7 +156,15 @@ export default {
   name: "PageIndex",
   data() {
     return {
-      slide: "first"
+      slide: 1,
+      slideTitle: "Пункт назначения",
+      slideSubtitle: "Аннотация",
+      images: [
+        "https://cdn.quasar.dev/img/mountains.jpg",
+        "https://cdn.quasar.dev/img/parallax1.jpg",
+        "https://cdn.quasar.dev/img/parallax2.jpg"
+      ],
+      isVisible: false
     };
   },
   computed: {
@@ -176,6 +174,7 @@ export default {
   },
   methods: {
     showDetails() {
+      this.isVisible = true;
       // this.$router
     }
   }
@@ -183,8 +182,13 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.index
+.bg-light
+  background-color: $light
   color: $dark
+
+.bg-dark
+  background-color: $dark
+  color: $light
 
 .hero
   color: $light
@@ -201,16 +205,15 @@ export default {
     color: $dark
     font-size: 1.3em
 
-.main
-  background-color: $blue-grey-10
-
-.card
+.tours
   color: $warning
   text-align: center
 
   &__content
     margin-top: -7rem
-    background: radial-gradient(circle, $primary 0, $deep-orange-12 100%)
+
+    &_bg
+      background: radial-gradient(ellipse at top, $primary 0, $deep-orange-12 100%)
 
   &__label
     background-color: $deep-orange-10
@@ -222,4 +225,8 @@ export default {
   &__text
     color: $dark
     text-align: justify
+
+.my-card
+  max-width: 250px
+  width: 100%
 </style>
