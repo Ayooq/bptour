@@ -5,7 +5,7 @@ export default async ({ Vue }) => {
     container: "body",
     duration: 1500,
     easing: "ease",
-    offset: -100,
+    offset: -50,
     force: true,
     cancelable: true,
     onStart: false,

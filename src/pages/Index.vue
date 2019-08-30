@@ -44,10 +44,12 @@
       </q-parallax>
     </section>
 
-    <section id="tours" class="tours relative-position q-px-xl bg-dark">
-      <q-card class="tours tours__content tours__content_bg q-mb-xl q-pt-xl">
+    <section class="tours relative-position fit bg-dark">
+      <q-card class="tours tours__content tours__content_bg q-pt-xl shadow-5">
         <q-card-section>
-          <q-item-label class="tours tours__label q-pa-xl inset-shadow text-h1"
+          <q-item-label
+            id="tours"
+            class="tours tours__label q-pa-xl inset-shadow text-h1"
             >Горящие туры</q-item-label
           >
           <q-carousel
@@ -63,11 +65,11 @@
           >
             <q-carousel-slide
               v-scroll-to="'#details'"
-              v-for="i in images"
+              v-for="i in images.length"
               :key="i"
               :name="i"
-              :img-src="i"
-              @click="showDetails"
+              :img-src="images[i - 1]"
+              @click="expandInfo(i - 2)"
             >
               <div id="details" class="tours tours__caption absolute-bottom">
                 <div class="q-py-md text-h2">{{ slideTitle }}</div>
@@ -77,21 +79,11 @@
           </q-carousel>
         </q-card-section>
 
-        <q-card-section>
-          <h4 class="tours tours__text q-pa-md">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
-            dignissimos non voluptatem, nihil voluptatum culpa cum corporis odio
-            reprehenderit illo. Quo ducimus architecto mollitia minus maxime in,
-            voluptates voluptate beatae? Lorem ipsum dolor sit amet consectetur,
-            adipisicing elit. Perspiciatis iure commodi, Lorem ipsum dolor, sit
-            amet consectetur adipisicing elit. Repellat, autem quis fugit
-            placeat, quidem explicabo odit est eius velit minima doloremque
-            delectus vero facilis commodi? Blanditiis suscipit recusandae
-            distinctio doloribus. voluptatum, explicabo vero dicta accusamus
-            numquam optio dignissimos totam sed harum necessitatibus ipsam
-            magnam delectus, tenetur dolor a. Placeat?
-          </h4>
-        </q-card-section>
+        <q-expansion-item>
+          <q-card-section>
+            <h4 class="tours tours__text q-pa-md">{{ toursInfo[slide] }}</h4>
+          </q-card-section>
+        </q-expansion-item>
       </q-card>
     </section>
 
@@ -164,6 +156,7 @@ export default {
         "https://cdn.quasar.dev/img/parallax1.jpg",
         "https://cdn.quasar.dev/img/parallax2.jpg"
       ],
+      toursInfo: ["Первый маршрут", "Второй маршрут", "Третий маршрут"],
       isVisible: false
     };
   },
@@ -173,9 +166,10 @@ export default {
     }
   },
   methods: {
-    showDetails() {
+    expandInfo(i) {
+      console.log(i);
+      this.tour = this.toursInfo[i];
       this.isVisible = true;
-      // this.$router
     }
   }
 };
@@ -210,7 +204,12 @@ export default {
   text-align: center
 
   &__content
-    margin-top: -7rem
+    border-radius: 0
+
+    @media (min-width: $breakpoint-md-min)
+      margin: -7rem 3rem 7rem
+      border-radius: 0.9rem
+      box-shadow: $shadow-24
 
     &_bg
       background: radial-gradient(ellipse at top, $primary 0, $deep-orange-12 100%)
