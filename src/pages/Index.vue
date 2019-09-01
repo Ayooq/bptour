@@ -54,24 +54,28 @@
           >
           <q-carousel
             v-model="slide"
+            :autoplay="autoplay"
+            id="details"
             class="shadow-24"
             height="500px"
             transition-next="jump-left"
             transition-prev="jump-right"
             arrows
             animated
-            autoplay
             infinite
+            padding
+            swipeable
+            @input="updateTourDetails"
           >
             <q-carousel-slide
               v-scroll-to="'#details'"
-              v-for="i in images.length"
-              :key="i"
-              :name="i"
-              :img-src="images[i - 1]"
-              @click="expandInfo(i - 2)"
+              v-for="(item, index) in images"
+              :key="index"
+              :name="index"
+              :img-src="item"
+              @click="expandInfo"
             >
-              <div id="details" class="tours tours__caption absolute-bottom">
+              <div class="tours tours__caption absolute-bottom">
                 <div class="q-py-md text-h2">{{ slideTitle }}</div>
                 <div class="q-py-md text-h6">{{ slideSubtitle }}</div>
               </div>
@@ -79,65 +83,54 @@
           </q-carousel>
         </q-card-section>
 
-        <q-expansion-item>
+        <q-expansion-item
+          v-model="expanded"
+          expand-icon-class="invisible"
+          expand-icon-toggle
+          @show="showTourDetails"
+        >
           <q-card-section>
-            <h4 class="tours tours__text q-pa-md">{{ toursInfo[slide] }}</h4>
+            <h4 class="tours tours__text q-px-md">{{ tourDetail }}</h4>
           </q-card-section>
         </q-expansion-item>
       </q-card>
     </section>
 
-    <section id="about" class="about row">
-      <div id="about" class="hero hero__footer col-12 q-pa-md">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam
-        maiores fugit eum! Odio rem iste error cum distinctio, praesentium
-        explicabo vitae ut, debitis officia sapiente ipsam, mollitia natus
-        quidem reprehenderit! Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. A assumenda magni unde hic harum, consequuntur quae accusamus
-        delectus, itaque sed animi deleniti distinctio esse dignissimos
-        voluptas? Perferendis perspiciatis praesentium quod. Voluptas accusamus
-        temporibus excepturi saepe ipsum rem quasi eos nulla cupiditate
-        blanditiis deserunt possimus, laborum iure fugit repellat odio maxime
-        soluta similique officia! Ipsa minus repellat quae quasi vel quis!
-        Facere fuga pariatur tenetur distinctio, perspiciatis voluptatum veniam,
-        accusamus fugit tempora eveniet inventore, id facilis saepe blanditiis
-        ad. Officia impedit minima odio eos, similique maxime rerum nostrum
-        excepturi laudantium? Assumenda? Optio voluptate iste possimus fugit
-        omnis repellat non qui velit explicabo voluptatem aliquam veritatis
-        dignissimos, facilis pariatur libero animi sunt reiciendis porro eius
-        dolorem esse temporibus eaque! Eum, sit corrupti! Nihil, ipsa assumenda.
-        In similique accusamus iste maiores rerum quidem, soluta, eius quibusdam
-        molestias at excepturi sint adipisci, architecto earum voluptatibus?
-        Excepturi neque quo accusantium veniam explicabo, maiores officia nulla.
-        Esse culpa temporibus, tempore vel maiores eveniet debitis, nemo dolores
-        ratione rem corrupti earum quibusdam iste ipsam officia voluptatem quia
-        pariatur eligendi neque possimus? Minima nostrum incidunt odit non
-        velit? Doloribus explicabo excepturi laboriosam officiis tenetur fugiat
-        cum, dignissimos dicta reprehenderit ratione ipsam non maxime accusamus
-        voluptatem harum tempora culpa facilis aliquid voluptatum doloremque.
-        Facere quibusdam mollitia optio veniam et. Fugit nihil repellendus,
-        pariatur eos accusantium, nemo et nam praesentium, amet repellat numquam
-        saepe est neque? Placeat eum ullam assumenda non nostrum, culpa quos ex,
-        veritatis laborum voluptatibus provident blanditiis. Reprehenderit,
-        nesciunt amet, at fuga, modi adipisci ipsa tenetur quaerat dolorum nam
-        ab id! Dignissimos illo doloremque nam omnis similique quas, iure earum
-        est nobis corporis hic vero perspiciatis maxime. Natus molestiae fugit
-        quaerat. Odit dolore perferendis ex sequi necessitatibus aperiam
-        voluptatibus minus doloribus vitae, nesciunt natus tempore id quisquam
-        libero iste est architecto sunt optio ducimus. Cupiditate,
-        exercitationem iusto? Nihil odio itaque, atque fugit assumenda nemo,
-        dolorem porro praesentium aliquid vero libero omnis provident
-        dignissimos, eveniet eum ullam iusto quo distinctio esse vitae placeat
-        inventore nisi obcaecati! Facere, laborum!
-      </div>
-    </section>
-
-    <section id="contacts" class="footer row">
-      <div class="col-12 q-ma-xl">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia,
-        consequuntur, officia ipsa facere repellendus quibusdam, possimus maxime
-        aut eaque sint error eveniet omnis sapiente ullam? Nulla quos
-        praesentium ducimus soluta.
+    <section id="contacts" class="contacts fit bg-light">
+      <div class="q-ma-xl">
+        <h4 class="text-center">Наши контакты</h4>
+        <q-list>
+          <q-item>
+            <span class="text-h6">
+              Республика Казахстан, город Павлодар, ул.Академика Сатпаева, д.65,
+              офис 315.
+            </span>
+          </q-item>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon color="primary" name="fas fa-phone-alt" />
+            </q-item-section>
+            <q-item-section>
+              <span class="text-h6">8(7182)32-33-54</span>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon color="primary" name="fas fa-mobile-alt" />
+            </q-item-section>
+            <q-item-section>
+              <span class="text-h6">+7(707)462-66-69</span>
+            </q-item-section>
+          </q-item>
+          <q-item>
+            <q-item-section avatar>
+              <q-icon color="primary" name="fas fa-mobile-alt" />
+            </q-item-section>
+            <q-item-section>
+              <span class="text-h6">+7(705)162-58-75</span>
+            </q-item-section>
+          </q-item>
+        </q-list>
       </div>
     </section>
   </q-page>
@@ -148,16 +141,18 @@ export default {
   name: "PageIndex",
   data() {
     return {
+      autoplay: true,
       slide: 1,
       slideTitle: "Пункт назначения",
       slideSubtitle: "Аннотация",
-      images: [
+      images: Array(
         "https://cdn.quasar.dev/img/mountains.jpg",
         "https://cdn.quasar.dev/img/parallax1.jpg",
         "https://cdn.quasar.dev/img/parallax2.jpg"
-      ],
+      ),
       toursInfo: ["Первый маршрут", "Второй маршрут", "Третий маршрут"],
-      isVisible: false
+      tourDetail: null,
+      expanded: false
     };
   },
   computed: {
@@ -166,24 +161,23 @@ export default {
     }
   },
   methods: {
-    expandInfo(i) {
-      console.log(i);
-      this.tour = this.toursInfo[i];
-      this.isVisible = true;
+    showTourDetails() {
+      this.tourDetail = this.toursInfo[this.slide];
+    },
+    updateTourDetails() {
+      if (this.expanded) {
+        this.showTourDetails();
+      }
+    },
+    expandInfo() {
+      this.expanded = true;
+      this.autoplay = false;
     }
   }
 };
 </script>
 
 <style lang="stylus" scoped>
-.bg-light
-  background-color: $light
-  color: $dark
-
-.bg-dark
-  background-color: $dark
-  color: $light
-
 .hero
   color: $light
 
@@ -222,6 +216,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.3)
 
   &__text
+    margin-top: -0.7em
     color: $dark
     text-align: justify
 

@@ -1,7 +1,7 @@
 <template>
   <div class="error">
     <img
-      class="error error__bg fix absolute"
+      class="error error__bg fit absolute"
       src="statics/images/plane.jpg"
       alt="bg"
     />
@@ -13,7 +13,7 @@
         <strong>(404)</strong>
       </h4>
       <h6 class="error error__text">
-        Не переживайте, мы готовы указать Вам верное направление! С нами Вы
+        Не переживайте, мы готовы направить Вас в нужное русло! С нами Вы
         никогда не заблудитесь!
       </h6>
       <q-btn

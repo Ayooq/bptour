@@ -1,26 +1,26 @@
 <template>
   <q-layout view="hHh Lpr fff" class="font-primary">
-    <AppLayoutQHeader />
+    <AppHeader />
 
-    <AppLayoutQDrawers />
+    <!-- <AppDrawers /> -->
 
     <q-page-container>
       <router-view />
     </q-page-container>
 
-    <AppLayoutQFooter />
+    <AppFooter />
   </q-layout>
 </template>
 
 <script>
-import AppLayoutQHeader from "components/AppLayoutQHeader";
-import AppLayoutQDrawers from "components/AppLayoutQDrawers";
-import AppLayoutQFooter from "components/AppLayoutQFooter";
+import AppHeader from "components/AppHeader";
+// import AppDrawers from "components/AppDrawers";
+import AppFooter from "components/AppFooter";
 export default {
   components: {
-    AppLayoutQHeader,
-    AppLayoutQDrawers,
-    AppLayoutQFooter
+    AppHeader,
+    // AppDrawers,
+    AppFooter
   },
   methods: {
     // openURL,
@@ -28,4 +28,39 @@ export default {
 };
 </script>
 
-<style lang="stylus"></style>
+<style lang="stylus">
+.bg-light
+  background-color: $light
+  color: $dark
+
+.bg-dark
+  background-color: $dark
+  color: $light
+
+.bp-logo
+  &__title
+    color: $dark
+
+  &__img
+    animation: spin 1.2s ease-in-out
+
+    &_filled
+      background-color: $secondary
+
+  ^[0]:hover &__img
+    animation: spin-h 1.2s ease-in-out
+
+@keyframes spin
+  0%
+    transform: rotate(0)
+
+  100%
+    transform: rotate(360deg)
+
+@keyframes spin-h
+  0%
+    transform: rotate(0)
+
+  100%
+    transform: rotate(360deg)
+</style>
