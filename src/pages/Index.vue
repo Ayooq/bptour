@@ -101,35 +101,37 @@
         <h3 class="text-center">Наши контакты</h3>
         <q-splitter
           v-model="splitterModel"
-          :limits="[42, 100]"
+          :limits="[25, 100]"
           :horizontal="stackColumns"
           after-class="overflow-hidden"
           style="height: 400px"
         >
           <template v-slot:before>
-            <q-list class="row q-mt-md">
-              <q-item class="col-12 row justify-start">
-                <q-item-section class="col-auto" avatar>
+            <q-list class="row-inline q-mt-md">
+              <q-item>
+                <q-item-section avatar>
                   <q-icon color="primary" name="fas fa-map-marked-alt" />
                 </q-item-section>
-                <q-item-section class="col">
-                  <span class="text-h6">
-                    Республика Казахстан, город Павлодар, ул.Академика Сатпаева,
-                    д.65, офис 315.
-                  </span>
+                <q-item-section>
+                  <span class="text-h6">Республика Казахстан, г.Павлодар,</span>
+                  <span class="text-h6"
+                    >ул.Академика Сатпаева, д.65, офис 315.</span
+                  >
                 </q-item-section>
               </q-item>
-              <q-item class="col row-inline justify-start">
-                <q-item-section class="col-auto" avatar>
+              <q-item>
+                <q-item-section avatar>
                   <q-icon color="primary" name="fas fa-phone-alt" />
                 </q-item-section>
-                <q-item-section class="col-auto">
+                <q-item-section>
                   <span class="text-h6 q-mr-xl">8(7182)32-33-54</span>
                 </q-item-section>
-                <q-item-section class="on-left" avatar>
+              </q-item>
+              <q-item>
+                <q-item-section avatar>
                   <q-icon color="primary" name="fas fa-mobile-alt" />
                 </q-item-section>
-                <q-item-section class="col-auto">
+                <q-item-section>
                   <span class="text-h6">+7(707)462-66-69</span>
                   <span class="text-h6">+7(705)162-58-75</span>
                 </q-item-section>
@@ -147,9 +149,9 @@
           </template>
 
           <template v-slot:after>
-            <div class="q-pa-md">
-              <div class="text-h4 q-mb-md">Карта</div>
-              <div v-for="n in 20" :key="n" class="q-my-md">
+            <div class="q-pl-xl">
+              <h4 class="map map__title text-center">Мы на карте</h4>
+              <div v-for="n in 5" :key="n" class="q-my-md">
                 {{ n }}. Lorem ipsum dolor sit, amet consectetur adipisicing
                 elit. Quis praesentium cumque magnam odio iure quidem, quod
                 illum numquam possimus obcaecati commodi minima assumenda
@@ -248,4 +250,8 @@ export default {
     margin-top: -0.7em
     color: $dark
     text-align: justify
+
+.map
+  &__title
+    margin: 1.3rem
 </style>
