@@ -44,11 +44,11 @@ export default {
   &__img
     animation: spin 1.2s ease-in-out
 
+    ~/:hover &
+      animation: spin-h 1.2s ease-in-out
+
     &_filled
       background-color: $secondary
-
-  ^[0]:hover &__img
-    animation: spin-h 1.2s ease-in-out
 
 @keyframes spin
   0%

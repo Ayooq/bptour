@@ -98,10 +98,10 @@
 
     <section id="contacts" class="contacts fit bg-light">
       <div class="q-ma-xl">
-        <h3 class="text-center">Наши контакты</h3>
+        <h3 class="text-center">Контактная информация</h3>
         <q-splitter
           v-model="splitterModel"
-          :limits="[25, 100]"
+          :limits="[35, 100]"
           :horizontal="stackColumns"
           after-class="overflow-hidden"
           style="height: 400px"
@@ -124,7 +124,7 @@
                   <q-icon color="primary" name="fas fa-phone-alt" />
                 </q-item-section>
                 <q-item-section>
-                  <span class="text-h6 q-mr-xl">8(7182)32-33-54</span>
+                  <span class="text-h6 q-mr-xl">+7(7182) 32-33-54</span>
                 </q-item-section>
               </q-item>
               <q-item>
@@ -132,8 +132,8 @@
                   <q-icon color="primary" name="fas fa-mobile-alt" />
                 </q-item-section>
                 <q-item-section>
-                  <span class="text-h6">+7(707)462-66-69</span>
-                  <span class="text-h6">+7(705)162-58-75</span>
+                  <span class="text-h6">+7(707) 462-66-69</span>
+                  <span class="text-h6">+7(705) 162-58-75</span>
                 </q-item-section>
               </q-item>
             </q-list>
@@ -149,13 +149,10 @@
           </template>
 
           <template v-slot:after>
-            <div class="q-pl-xl">
+            <div class="full-height q-pl-xl">
               <h4 class="map map__title text-center">Мы на карте</h4>
-              <div v-for="n in 5" :key="n" class="q-my-md">
-                {{ n }}. Lorem ipsum dolor sit, amet consectetur adipisicing
-                elit. Quis praesentium cumque magnam odio iure quidem, quod
-                illum numquam possimus obcaecati commodi minima assumenda
-                consectetur culpa fuga nulla ullam. In, libero.
+              <div class="fit q-ma-md">
+                <YaMaps />
               </div>
             </div>
           </template>
@@ -166,8 +163,13 @@
 </template>
 
 <script>
+import YaMaps from "components/YaMaps";
+
 export default {
   name: "PageIndex",
+  components: {
+    YaMaps
+  },
   data() {
     return {
       autoplay: true,
@@ -182,7 +184,7 @@ export default {
       toursInfo: ["Первый маршрут", "Второй маршрут", "Третий маршрут"],
       tourDetail: null,
       expanded: false,
-      splitterModel: 42,
+      splitterModel: 50,
       stackColumns: false
     };
   },
@@ -201,8 +203,10 @@ export default {
       }
     },
     expandInfo() {
-      this.expanded = true;
       this.autoplay = false;
+      setTimeout(() => {
+        this.expanded = true;
+      }, 888);
     }
   }
 };

@@ -51,9 +51,11 @@
 
       <q-btn
         class="on-right text-light"
+        type="a"
+        href="https://www.instagram.com/buroput18/"
+        target="_blank"
         icon="fab fa-instagram"
         flat
-        disable
         round
       />
     </q-toolbar>
