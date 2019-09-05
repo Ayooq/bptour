@@ -1,13 +1,9 @@
 <template>
-  <yandex-map
-    :settings="settings"
-    :coords="coords1"
-    ymap-class="ymap-body"
-    zoom="17"
-  >
+  <yandex-map :settings="settings" :coords="coords1" zoom="17">
     <ymap-marker
       :coords="coords2"
       :icon="markerIcon"
+      ymap-class="map ymap-body"
       marker-id="123"
       hint-content="Бюро Путешествий"
     />
@@ -29,8 +25,8 @@ export default {
       lang: "ru_RU",
       version: "2.1"
     },
-    coords1: [52.283, 76.942],
-    coords2: [52.2819, 76.942099],
+    coords1: [52.281892, 76.942061],
+    coords2: [52.281892, 76.942061],
     markerIcon: {
       color: "orange",
       content: "Мы здесь!"
@@ -45,11 +41,8 @@ export default {
 </script>
 
 <style lang="stylus">
-.ymap-body
+.ymap-container
   >:nth-child(1)
-    padding-top: 5rem
-
-    >:nth-child(1)
-      min-width: 1100px
-      min-height: 300px
+    min-width: 1100px
+    min-height: 300px
 </style>

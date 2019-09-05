@@ -25,22 +25,47 @@ module.exports = function(ctx) {
       // iconSet: 'ionicons-v4',
       lang: "ru", // Quasar language
 
-      all: true, // --- includes everything; for dev only!
+      // all: true, // --- includes everything; for dev only!
 
       components: [
         "QLayout",
         "QHeader",
-        "QDrawer",
+        // "QDrawer",
+        "QFooter",
+
         "QPageContainer",
         "QPage",
+
         "QToolbar",
         "QToolbarTitle",
+
+        "QAvatar",
+
         "QBtn",
+        "QBtnDropdown",
+
+        "QCard",
+        "QCardSection",
+
+        "QCarousel",
+        "QCarouselSlide",
+
+        "QExpansionItem",
+
         "QIcon",
+
         "QList",
         "QItem",
+        "QItemLabel",
         "QItemSection",
-        "QItemLabel"
+
+        "QParallax",
+
+        "QSplitter",
+        "QSpace",
+
+        "QTabs",
+        "QTab"
       ],
 
       directives: ["Ripple"],
@@ -79,8 +104,8 @@ module.exports = function(ctx) {
 
     htmlVariables: { productName: "Бюро Путешествий" },
 
-    animations: "all", // --- includes all animations
-    // animations: [],
+    // animations: "all", // --- includes all animations
+    // animations: ["Rotate"],
 
     ssr: {
       pwa: false

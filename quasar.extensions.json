@@ -13,7 +13,11 @@
           "iconHash": "23cf76d8680bdf777f2fc45145a3832e"
         }
       },
-      "build": {}
+      "build": {
+        "spa": {
+          "iconHash": "23cf76d8680bdf777f2fc45145a3832e"
+        }
+      }
     }
   },
   "@quasar/qflashcard": {}
