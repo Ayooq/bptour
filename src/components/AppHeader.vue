@@ -24,9 +24,24 @@
         shrink
         stretch
       >
-        <q-tab v-scroll-to="'#home'" name="home" label="Главная" />
-        <q-tab v-scroll-to="'#tours'" name="tours" label="Туры" />
-        <q-tab v-scroll-to="'#contacts'" name="contacts" label="О нас" />
+        <q-tab
+          v-scroll-to="'#home'"
+          name="home"
+          label="Главная"
+          @click="changeTab('home')"
+        />
+        <q-tab
+          v-scroll-to="'#tours'"
+          name="tours"
+          label="Туры"
+          @click="changeTab('tours')"
+        />
+        <q-tab
+          v-scroll-to="'#contacts'"
+          name="contacts"
+          label="О нас"
+          @click="changeTab('contacts')"
+        />
       </q-tabs>
 
       <q-btn-dropdown class="orientation-portrait" auto-close flat stretch>
@@ -37,13 +52,17 @@
           </div>
         </template>
         <q-list>
-          <q-item v-scroll-to="'#home'" clickable @click="tab = 'home'">
+          <q-item v-scroll-to="'#home'" clickable @click="changeTab('home')">
             <q-item-section>Главная</q-item-section>
           </q-item>
-          <q-item v-scroll-to="'#tours'" clickable @click="tab = 'tours'">
+          <q-item v-scroll-to="'#tours'" clickable @click="changeTab('tours')">
             <q-item-section>Туры</q-item-section>
           </q-item>
-          <q-item v-scroll-to="'#contacts'" clickable @click="tab = 'contacts'">
+          <q-item
+            v-scroll-to="'#contacts'"
+            clickable
+            @click="changeTab('contacts')"
+          >
             <q-item-section>О нас</q-item-section>
           </q-item>
         </q-list>
@@ -65,10 +84,20 @@
 <script>
 export default {
   name: "AppHeader",
-  data() {
-    return {
-      tab: "home"
-    };
+  computed: {
+    tab: {
+      get() {
+        return this.$store.state.tab;
+      },
+      set(val) {
+        this.$store.commit("bp/updHeaderTabValue", val);
+      }
+    }
+  },
+  methods: {
+    changeTab(val) {
+      this.tab.set(val);
+    }
   }
   // computed: {
   //   drawerLeft: {

@@ -17,7 +17,7 @@
       >
         <img
           class="hero hero__logo col-auto q-pb-lg"
-          src="assets/bp-logo-full.svg"
+          src="../assets/bp-logo-full.svg"
         />
         <div class="col-auto column items-center">
           <span class="hero hero__subtitle text-h6">Тур-агентство</span>
@@ -30,6 +30,7 @@
             push
             rounded
             unelevated
+            @click="$store.commit('bp/updHeaderTabValue', 'tours')"
           />
         </div>
       </div>
