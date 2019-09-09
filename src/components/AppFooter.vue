@@ -2,7 +2,14 @@
   <q-footer class="bp-footer bg-dark shadow-21" elevated>
     <q-toolbar class="row">
       <q-toolbar-title class="col">
-        <q-btn v-scroll-to="'#home'" class="bp-logo" dense flat rounded>
+        <q-btn
+          v-scroll-to="'#home'"
+          class="bp-logo"
+          dense
+          flat
+          rounded
+          @click="changeTab('home')"
+        >
           <q-avatar class="on-left">
             <img
               class="bp-logo bp-logo__img"
@@ -30,11 +37,14 @@
 
 <script>
 export default {
-  name: "AppFooter"
-  // methods: {
-  //   goToAddress() {
-  //     @TODO
-  //   }
-  // }
+  name: "AppFooter",
+  props: {
+    tab: String
+  },
+  methods: {
+    changeTab(val) {
+      this.tab = val;
+    }
+  }
 };
 </script>

@@ -2,7 +2,14 @@
   <q-header class="bp-header" elevated>
     <q-toolbar>
       <q-toolbar-title shrink>
-        <q-btn v-scroll-to="'#home'" class="bp-logo" dense flat rounded>
+        <q-btn
+          v-scroll-to="'#home'"
+          class="bp-logo"
+          dense
+          flat
+          rounded
+          @click="changeTab('home')"
+        >
           <q-avatar class="on-left">
             <img
               class="bp-logo bp-logo__img bp-logo__img_filled"
@@ -84,19 +91,12 @@
 <script>
 export default {
   name: "AppHeader",
-  computed: {
-    tab: {
-      get() {
-        return this.$store.state.tab;
-      },
-      set(val) {
-        this.$store.commit("bp/updHeaderTabValue", val);
-      }
-    }
+  props: {
+    tab: String
   },
   methods: {
     changeTab(val) {
-      this.tab.set(val);
+      this.tab = val;
     }
   }
   // computed: {
