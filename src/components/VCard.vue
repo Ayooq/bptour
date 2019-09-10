@@ -14,7 +14,8 @@
         height="500px"
         transition-next="jump-left"
         transition-prev="jump-right"
-        arrows
+        navigation-icon="fas fa-circle text-warning"
+        navigation
         animated
         infinite
         padding
@@ -29,9 +30,8 @@
           :img-src="item"
           @click="expandInfo"
         >
-          <div class="tours tours__caption absolute-bottom">
-            <div class="q-py-md text-h2">{{ slideTitle }}</div>
-            <div class="q-py-md text-h6">{{ slideSubtitle }}</div>
+          <div class="tours tours__caption absolute-bottom text-h2">
+            {{ slideTitle }}
           </div>
         </q-carousel-slide>
       </q-carousel>
@@ -58,13 +58,18 @@ export default {
       autoplay: true,
       slide: 1,
       slideTitle: "Пункт назначения",
-      slideSubtitle: "Аннотация",
       images: [
-        "https://cdn.quasar.dev/img/mountains.jpg",
-        "https://cdn.quasar.dev/img/parallax1.jpg",
-        "https://cdn.quasar.dev/img/parallax2.jpg"
+        "statics/images/temple.jpg",
+        "statics/images/oia.jpg",
+        "statics/images/maldives1.jpg",
+        "statics/images/beach1.jpg"
       ],
-      toursInfo: ["Первый маршрут", "Второй маршрут", "Третий маршрут"],
+      toursInfo: [
+        "Развёрнутое описание 1",
+        "Развёрнутое описание 2",
+        "Развёрнутое описание 3",
+        "Развёрнутое описание 4"
+      ],
       tourDetail: null,
       expanded: false
     };

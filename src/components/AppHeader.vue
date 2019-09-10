@@ -91,8 +91,15 @@
 <script>
 export default {
   name: "AppHeader",
-  props: {
-    tab: String
+  computed: {
+    tab: {
+      get() {
+        return this.$store.state.bp.tab;
+      },
+      set(val) {
+        this.$store.commit("bp/updHeaderTabValue", val);
+      }
+    }
   },
   methods: {
     changeTab(val) {

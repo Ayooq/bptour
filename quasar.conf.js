@@ -12,13 +12,13 @@ module.exports = function(ctx) {
     extras: [
       // 'ionicons-v4',
       // 'mdi-v3',
-      "fontawesome-v5",
+      "fontawesome-v5"
       // 'eva-icons',
       // 'themify',
       // 'roboto-font-latin-ext', // this or either 'roboto-font', NEVER both!
 
-      "roboto-font", // optional, you are not bound to it
-      "material-icons" // optional, you are not bound to it
+      // "roboto-font", // optional, you are not bound to it
+      // "material-icons" // optional, you are not bound to it
     ],
 
     framework: {
@@ -60,6 +60,8 @@ module.exports = function(ctx) {
         "QItemSection",
 
         "QParallax",
+
+        "QResizeObserver",
 
         "QSplitter",
         "QSpace",

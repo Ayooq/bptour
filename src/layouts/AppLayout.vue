@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fff" class="font-primary">
-    <AppHeader tab="tab" />
+    <AppHeader />
 
     <!-- <AppDrawers /> -->
 
@@ -8,7 +8,7 @@
       <router-view />
     </q-page-container>
 
-    <AppFooter tab="tab" />
+    <AppFooter />
   </q-layout>
 </template>
 
@@ -21,16 +21,6 @@ export default {
     AppHeader,
     // AppDrawers,
     AppFooter
-  },
-  computed: {
-    tab: {
-      get() {
-        return this.$store.state.bp.tab;
-      },
-      set(val) {
-        this.$store.commit("bp/updHeaderTabValue", val);
-      }
-    }
   },
   methods: {
     // openURL,

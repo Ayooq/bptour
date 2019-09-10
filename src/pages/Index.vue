@@ -6,6 +6,7 @@
 
     <section class="tours relative-position fit bg-dark">
       <VCard />
+      <VGallery />
     </section>
 
     <section id="contacts" class="contacts fit q-pa-xl bg-light">
@@ -18,6 +19,7 @@
 <script>
 import VParallax from "components/VParallax";
 import VCard from "components/VCard";
+import VGallery from "components/VGallery";
 import VSplitter from "components/VSplitter";
 
 export default {
@@ -25,6 +27,7 @@ export default {
   components: {
     VParallax,
     VCard,
+    VGallery,
     VSplitter
   }
 };
@@ -70,7 +73,7 @@ export default {
     background-color: $deep-orange-10
 
   &__caption
-    padding: 12px
+    padding: 0.5em 1em 1.2em
     background-color: rgba(0, 0, 0, 0.3)
 
   &__text

@@ -1,7 +1,7 @@
 <template>
-  <yandex-map :settings="settings" :coords="coords1" zoom="17">
+  <yandex-map :settings="settings" :coords="coords" zoom="17">
     <ymap-marker
-      :coords="coords2"
+      :coords="coords"
       :icon="markerIcon"
       ymap-class="map ymap-body"
       marker-id="123"
@@ -25,8 +25,7 @@ export default {
       lang: "ru_RU",
       version: "2.1"
     },
-    coords1: [52.281892, 76.942061],
-    coords2: [52.281892, 76.942061],
+    coords: [52.281892, 76.942061],
     markerIcon: {
       color: "orange",
       content: "Мы здесь!"
@@ -43,6 +42,9 @@ export default {
 <style lang="stylus">
 .ymap-container
   >:nth-child(1)
-    min-width: 1100px
+    min-width: 1127px
     min-height: 300px
+
+    @media (max-width: $breakpoint-sm-max)
+      min-width: 300px
 </style>
