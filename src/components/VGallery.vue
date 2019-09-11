@@ -9,13 +9,13 @@
         :style="style"
         class="col"
       >
-        <q-flashcard-section transition="nudge-in">
+        <q-flashcard-section :transition="transitions[10]">
           <img :src="item" />
         </q-flashcard-section>
-        <q-flashcard-section transition="fade-in" class="fit">
+        <q-flashcard-section :transition="transitions[0]" class="fit">
           <div class="fit" style="background-color: rgba(219,127,8, 0.3);" />
           <q-flashcard-section
-            transition="slide-up-in"
+            :transition="transitions[34]"
             class="q-pa-xl text-h5 text-info"
           >
             For beautiful eyes, look for the good in others; for beautiful lips,
@@ -23,12 +23,12 @@
             that you are never alone.
           </q-flashcard-section>
           <q-flashcard-section
-            transition="fade-in"
+            :transition="transitions[27]"
             class="fit flex justify-center items-center q-pt-xl"
           >
             <q-btn
               v-scroll-to="'#contacts'"
-              class="bg-info"
+              class="f-card f-card__btn"
               size="xl"
               push
               glossy
@@ -55,15 +55,53 @@ export default {
         "statics/images/bora-bora.jpg",
         "statics/images/louvre.jpg",
         "statics/images/schilthorn.jpg"
+      ],
+      transitions: [
+        "fade-in",
+        "fade-out",
+        "flip-left-in",
+        "flip-left-out",
+        "flip-right-in",
+        "flip-right-out",
+        "flip-down-in",
+        "flip-down-out",
+        "flip-up-in",
+        "flip-up-out",
+        "nudge-in",
+        "nudge-out",
+        "roll-left-in",
+        "roll-right-in",
+        "roll-down-in",
+        "roll-up-up",
+        "roll-left-out",
+        "roll-right-out",
+        "roll-down-out",
+        "roll-up-out",
+        "shake-left",
+        "shake-right",
+        "shake-down",
+        "shake-up",
+        "slide-left-in",
+        "slide-right-in",
+        "slide-down-in",
+        "slide-up-in",
+        "slide-left-out",
+        "slide-right-out",
+        "slide-down-out",
+        "slide-up-out",
+        "spin-in",
+        "spin-out",
+        "zoom-in",
+        "zoom-out"
       ]
     };
   },
   computed: {
     style() {
       return {
-        minHeight: "450px",
         minWidth: "450px",
-        textAlign: "center",
+        minHeight: "450px",
+        borderRadius: "8rem",
         boxShadow: "1px 1px 2px #e6e6e6"
       };
     },
@@ -84,4 +122,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="stylus">
+.f-card
+  text-align: center
+  text-shadow: 1px 1px 1px $dark
+
+  &__btn
+    background: $info
+    color: $light
+</style>
