@@ -9,7 +9,7 @@
       <VGallery />
     </section>
 
-    <section id="contacts" class="contacts fit q-pa-xl bg-light">
+    <section id="contacts" class="contacts fit q-mt-xl bg-light">
       <h3 class="text-center">Контактная информация</h3>
       <VSplitter />
     </section>
@@ -35,8 +35,6 @@ export default {
 
 <style lang="stylus">
 .hero
-  color: $light
-
   &__logo
     max-width: 15em
     max-height: 15rem
@@ -51,7 +49,6 @@ export default {
   &__cta
     margin-top: 0.7em
     background-color: $primary
-    color: $dark
     font-size: 1.3em
 
 .tours
@@ -66,6 +63,9 @@ export default {
       border-radius: 0.9rem
       box-shadow: $shadow-24
 
+      ~/__gallery
+        margin-top: -7rem
+
     &_bg
       background: radial-gradient(ellipse at top, $primary 0, $deep-orange-12 100%)
 
@@ -73,11 +73,15 @@ export default {
     background-color: $deep-orange-10
 
   &__caption
-    padding: 0.5em 1em 1.2em
+    padding: 0.4em 1em 1.3em
     background-color: rgba(0, 0, 0, 0.3)
 
   &__text
     margin-top: -0.7em
-    color: $dark
+    color: $light
     text-align: justify
+
+.contacts
+  color: $dark
+  text-shadow: none
 </style>

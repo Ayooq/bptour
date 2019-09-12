@@ -1,7 +1,7 @@
 <template>
   <q-parallax :height="parallaxHeight">
     <template #media>
-      <img src="statics/images/beach3.jpg" />
+      <img src="statics/images/bora-bora.jpg" />
     </template>
 
     <template #content="scope">
@@ -21,10 +21,10 @@
         />
         <div class="col-auto column items-center">
           <span class="hero hero__subtitle text-h6">Тур-агентство</span>
-          <p class="hero hero__title text-h3 text-center">Бюро Путешествий</p>
+          <p class="text-h3 text-center">Бюро Путешествий</p>
           <q-btn
             v-scroll-to="'#tours'"
-            class="hero hero__cta q-mb-sm"
+            class="hero hero__cta q-mb-sm bg-light"
             label="Начать путешествие"
             glossy
             push

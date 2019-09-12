@@ -31,7 +31,8 @@ export default {
 <style lang="stylus">
 .bg-light
   background-color: $light
-  color: $dark
+  color: $light
+  text-shadow: 1px 1px 1px $dark
 
 .bg-dark
   background-color: $dark
@@ -39,7 +40,8 @@ export default {
 
 .bp-logo
   &__title
-    color: $dark
+    color: $light
+    text-shadow: 1px 1px 1px $dark
 
   &__img
     animation: spin 1.2s ease-in-out
@@ -48,6 +50,7 @@ export default {
       animation: spin-h 1.2s ease-in-out
 
     &_filled
+      border: 1px solid $secondary
       background-color: $secondary
 
 @keyframes spin

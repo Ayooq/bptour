@@ -1,21 +1,20 @@
 <template>
-  <div class="q-px-xl q-pb-xl">
-    <h1 class="text-info q-pb-lg">Другие направления</h1>
-    <div class="row q-gutter-xl">
-      <q-flashcard
-        v-for="(item, index) in images"
-        :key="index"
-        :name="index"
-        :style="style"
-        class="col"
-      >
-        <q-flashcard-section :transition="transitions[10]">
-          <img :src="item" />
+  <div class="tours tours__gallery row q-pa-xl justify-evenly">
+    <h2 class="col-12 text-info">Другие направления</h2>
+    <div
+      v-for="(item, index) in images"
+      :key="index"
+      :name="index"
+      class="borders col-auto q-my-md"
+    >
+      <q-flashcard :style="style" class="f-card q-ma-md">
+        <q-flashcard-section transition="nudge-in">
+          <img :src="item" class="f-card f-card__img" alt="img" />
         </q-flashcard-section>
-        <q-flashcard-section :transition="transitions[0]" class="fit">
+        <q-flashcard-section transition="fade-in" class="fit">
           <div class="fit" style="background-color: rgba(219,127,8, 0.3);" />
           <q-flashcard-section
-            :transition="transitions[34]"
+            transition="zoom-in"
             class="q-pa-xl text-h5 text-info"
           >
             For beautiful eyes, look for the good in others; for beautiful lips,
@@ -23,7 +22,7 @@
             that you are never alone.
           </q-flashcard-section>
           <q-flashcard-section
-            :transition="transitions[27]"
+            transition="slide-up-in"
             class="fit flex justify-center items-center q-pt-xl"
           >
             <q-btn
@@ -49,60 +48,23 @@ export default {
   data() {
     return {
       images: [
-        "statics/images/beach2.jpg",
-        "statics/images/beach3.jpg",
-        "statics/images/maldives2.jpg",
-        "statics/images/bora-bora.jpg",
+        "statics/images/boat-house.jpg",
         "statics/images/louvre.jpg",
-        "statics/images/schilthorn.jpg"
-      ],
-      transitions: [
-        "fade-in",
-        "fade-out",
-        "flip-left-in",
-        "flip-left-out",
-        "flip-right-in",
-        "flip-right-out",
-        "flip-down-in",
-        "flip-down-out",
-        "flip-up-in",
-        "flip-up-out",
-        "nudge-in",
-        "nudge-out",
-        "roll-left-in",
-        "roll-right-in",
-        "roll-down-in",
-        "roll-up-up",
-        "roll-left-out",
-        "roll-right-out",
-        "roll-down-out",
-        "roll-up-out",
-        "shake-left",
-        "shake-right",
-        "shake-down",
-        "shake-up",
-        "slide-left-in",
-        "slide-right-in",
-        "slide-down-in",
-        "slide-up-in",
-        "slide-left-out",
-        "slide-right-out",
-        "slide-down-out",
-        "slide-up-out",
-        "spin-in",
-        "spin-out",
-        "zoom-in",
-        "zoom-out"
+        "statics/images/maldives2.jpg",
+        "statics/images/mountain.jpg",
+        "statics/images/polynesia.jpg",
+        "statics/images/schilthorn.jpg",
+        "statics/images/sea.jpg",
+        "statics/images/shore-up.jpg"
       ]
     };
   },
   computed: {
     style() {
       return {
-        minWidth: "450px",
-        minHeight: "450px",
-        borderRadius: "8rem",
-        boxShadow: "1px 1px 2px #e6e6e6"
+        width: "400px",
+        height: "400px",
+        borderRadius: "50%"
       };
     },
     tab: {
@@ -123,9 +85,21 @@ export default {
 </script>
 
 <style lang="stylus">
+.borders
+  height: 452px
+  border-radius: 50%
+  background: $light
+
 .f-card
   text-align: center
   text-shadow: 1px 1px 1px $dark
+
+  &__img
+    margin: auto
+    min-width: 500px
+    min-height: 500px
+    width: 50%
+    height: 50%
 
   &__btn
     background: $info

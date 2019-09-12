@@ -30,7 +30,7 @@
           :img-src="item"
           @click="expandInfo"
         >
-          <div class="tours tours__caption absolute-bottom text-h2">
+          <div class="tours tours__caption absolute-bottom text-h3">
             {{ slideTitle }}
           </div>
         </q-carousel-slide>
@@ -59,16 +59,18 @@ export default {
       slide: 1,
       slideTitle: "Пункт назначения",
       images: [
-        "statics/images/temple.jpg",
-        "statics/images/oia.jpg",
+        "statics/images/beach1.jpg",
         "statics/images/maldives1.jpg",
-        "statics/images/beach1.jpg"
+        "statics/images/oia.jpg",
+        "statics/images/temple.jpg",
+        "statics/images/schilthorn.jpg"
       ],
       toursInfo: [
         "Развёрнутое описание 1",
         "Развёрнутое описание 2",
         "Развёрнутое описание 3",
-        "Развёрнутое описание 4"
+        "Развёрнутое описание 4",
+        "Развёрнутое описание 5"
       ],
       tourDetail: null,
       expanded: false
