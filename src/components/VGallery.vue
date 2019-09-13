@@ -1,13 +1,13 @@
 <template>
-  <div class="tours tours__gallery row q-pa-xl justify-evenly">
-    <h2 class="col-12 text-info">Другие направления</h2>
+  <div class="tours tours__gallery row q-pa-xl q-mb-xl justify-evenly">
+    <h2 class="col-12 text-info q-pb-lg">Другие направления</h2>
     <div
       v-for="(item, index) in images"
       :key="index"
       :name="index"
-      class="borders col-auto q-my-md"
+      class="borders col-lg-3 col-md-4 col-sm-7 col-12 row q-ma-lg"
     >
-      <q-flashcard :style="style" class="f-card q-ma-md">
+      <q-flashcard :style="style" class="f-card col-auto q-ma-md">
         <q-flashcard-section transition="nudge-in">
           <img :src="item" class="f-card f-card__img" alt="img" />
         </q-flashcard-section>
@@ -51,19 +51,17 @@ export default {
         "statics/images/boat-house.jpg",
         "statics/images/louvre.jpg",
         "statics/images/maldives2.jpg",
-        "statics/images/mountain.jpg",
         "statics/images/polynesia.jpg",
-        "statics/images/schilthorn.jpg",
-        "statics/images/sea.jpg",
-        "statics/images/shore-up.jpg"
+        "statics/images/schilthorn.jpg"
       ]
     };
   },
   computed: {
     style() {
       return {
-        width: "400px",
-        height: "400px",
+        width: "500px",
+        height: "500px",
+        minWidth: 0,
         borderRadius: "50%"
       };
     },
@@ -86,20 +84,18 @@ export default {
 
 <style lang="stylus">
 .borders
-  height: 452px
+  border: 10px solid $info
   border-radius: 50%
-  background: $light
+  background: rgba(120, 234, 255, 0.5)
+  opacity: 0.9
 
 .f-card
   text-align: center
   text-shadow: 1px 1px 1px $dark
 
   &__img
-    margin: auto
-    min-width: 500px
-    min-height: 500px
-    width: 50%
-    height: 50%
+    width: 500px
+    height: 500px
 
   &__btn
     background: $info
