@@ -11,7 +11,7 @@
         :autoplay="autoplay"
         id="details"
         class="shadow-24"
-        height="500px"
+        height="30rem"
         transition-next="jump-left"
         transition-prev="jump-right"
         navigation-icon="fas fa-circle text-warning"
@@ -87,6 +87,7 @@ export default {
     },
     expandInfo() {
       this.autoplay = false;
+      this.$store.commit("bp/updHeaderTabValue", "tours");
       setTimeout(() => {
         this.expanded = true;
       }, 888);

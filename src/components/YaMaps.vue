@@ -42,7 +42,7 @@ export default {
 <style lang="stylus">
 .ymap-container
   >:nth-child(1)
-    min-width: 1200px
+    min-width: 1000px
     min-height: 300px
 
     @media (max-width: $breakpoint-sm-max)

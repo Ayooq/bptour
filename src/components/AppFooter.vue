@@ -17,11 +17,11 @@
         </q-avatar>
         <span class="gt-xs">Наверх</span>
       </q-btn>
-      <span class="col-auto text-center">Все права защищены. &copy; 2019</span>
-      <span class="col-auto text-center">
+      <span class="col-auto">Все права защищены. &copy; 2019</span>
+      <span class="col-auto">
         Наш Инстаграм:
         <q-btn
-          class="on-right text-light"
+          class="text-light"
           type="a"
           href="https://www.instagram.com/buroput18/"
           target="_blank"
@@ -37,19 +37,9 @@
 <script>
 export default {
   name: "AppFooter",
-  computed: {
-    tab: {
-      get() {
-        return this.$store.state.bp.tab;
-      },
-      set(val) {
-        this.$store.commit("bp/updHeaderTabValue", val);
-      }
-    }
-  },
   methods: {
     changeTab(val) {
-      this.tab = val;
+      this.$emit("change-tab", val);
     }
   }
 };

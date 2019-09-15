@@ -24,13 +24,7 @@
 
       <q-space />
 
-      <q-tabs
-        v-model="tab"
-        class="orientation-landscape"
-        align="right"
-        shrink
-        stretch
-      >
+      <q-tabs v-model="currentTab" class="orientation-landscape" shrink stretch>
         <q-tab
           v-scroll-to="'#home'"
           name="home"
@@ -91,10 +85,11 @@
 <script>
 export default {
   name: "AppHeader",
+  props: ["tab"],
   computed: {
-    tab: {
+    currentTab: {
       get() {
-        return this.$store.state.bp.tab;
+        return this.tab;
       },
       set(val) {
         this.$store.commit("bp/updHeaderTabValue", val);
@@ -103,7 +98,7 @@ export default {
   },
   methods: {
     changeTab(val) {
-      this.tab = val;
+      this.$emit("change-tab", val);
     }
   }
   // computed: {

@@ -4,7 +4,7 @@
       <VParallax />
     </section>
 
-    <section class="tours relative-position fit bg-dark">
+    <section class="tours fit bg-dark">
       <VCard />
       <VGallery />
     </section>

@@ -6,8 +6,8 @@
       :limits="[minPoint, maxPoint]"
       :horizontal="horizontal"
       style="height: 466px"
-      before-class="q-ma-md overflow-hidden"
-      separator-class="q-my-xl q-mx-lg"
+      before-class="q-pl-md q-py-md overflow-hidden"
+      separator-class="q-ma-lg"
       after-class="overflow-hidden"
     >
       <template v-slot:before>
@@ -89,7 +89,7 @@ export default {
   data() {
     return {
       avatarIcon: "fas fa-arrows-alt-h",
-      minPoint: 35,
+      minPoint: 42,
       maxPoint: 100,
       horizontal: false,
       splitterModel: 50,
@@ -106,7 +106,7 @@ export default {
       } else {
         this.avatarIcon = "fas fa-arrows-alt-h";
         this.horizontal = false;
-        this.minPoint = 35;
+        this.minPoint = 42;
         this.maxPoint = 100;
       }
     }
@@ -118,4 +118,5 @@ export default {
 .map
   &__title
     margin: 1.09em 0
+    white-space: nowrap
 </style>

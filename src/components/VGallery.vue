@@ -5,37 +5,39 @@
       v-for="(item, index) in images"
       :key="index"
       :name="index"
-      class="borders col-lg-3 col-md-4 col-sm-7 col-12 row q-ma-lg"
+      class="porthole col-lg-3 col-md-4 col-sm-7 col-12 row q-ma-lg"
     >
       <q-flashcard :style="style" class="f-card col-auto q-ma-md">
         <q-flashcard-section transition="nudge-in">
           <img :src="item" class="f-card f-card__img" alt="img" />
         </q-flashcard-section>
-        <q-flashcard-section transition="fade-in" class="fit">
-          <div class="fit" style="background-color: rgba(219,127,8, 0.3);" />
+        <q-flashcard-section transition="fade-out" class="fit">
+          <div class="fit" style="background-color: rgba(219,127,8, 0.2);" />
           <q-flashcard-section
-            transition="zoom-in"
-            class="q-pa-xl text-h5 text-info"
+            transition="zoom-out"
+            class="q-px-xl text-h5 text-info"
           >
-            For beautiful eyes, look for the good in others; for beautiful lips,
-            speak only words of kindness; and for poise, walk with the knowledge
-            that you are never alone.
+            <p class="q-ma-md q-py-xl">
+              For beautiful eyes, look for the good in others; for beautiful
+              lips, speak only words of kindness; and for poise, walk with the
+              knowledge that you are never alone.
+            </p>
           </q-flashcard-section>
-          <q-flashcard-section
-            transition="slide-up-in"
-            class="fit flex justify-center items-center q-pt-xl"
+        </q-flashcard-section>
+        <q-flashcard-section
+          transition="zoom-in"
+          class="flex fit justify-center items-center"
+        >
+          <q-btn
+            v-scroll-to="'#contacts'"
+            class="f-card f-card__btn"
+            size="xl"
+            push
+            glossy
+            rounded
+            @click="changeTab('contacts')"
+            >Заказать тур</q-btn
           >
-            <q-btn
-              v-scroll-to="'#contacts'"
-              class="f-card f-card__btn"
-              size="xl"
-              push
-              glossy
-              rounded
-              @click="changeTab('contacts')"
-              >Заказать тур</q-btn
-            >
-          </q-flashcard-section>
         </q-flashcard-section>
       </q-flashcard>
     </div>
@@ -83,10 +85,10 @@ export default {
 </script>
 
 <style lang="stylus">
-.borders
+.porthole
   border: 10px solid $info
   border-radius: 50%
-  background: rgba(120, 234, 255, 0.5)
+  background: rgba(20, 174, 205, 0.8)
   opacity: 0.9
 
 .f-card
