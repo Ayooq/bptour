@@ -1,6 +1,6 @@
 <template>
-  <div class="tours tours__gallery row q-pa-xl q-mb-xl justify-evenly">
-    <h2 class="col-12 text-info q-pb-lg">Другие направления</h2>
+  <div class="tours tours__gallery row q-py-xl q-px-md q-mb-xl justify-evenly">
+    <h2 class="col-12 text-info q-pb-lg q-mx-sm">Другие направления</h2>
     <div
       v-for="(item, index) in images"
       :key="index"
@@ -15,9 +15,9 @@
           <div class="fit" style="background-color: rgba(219,127,8, 0.2);" />
           <q-flashcard-section
             transition="zoom-out"
-            class="q-px-xl text-h5 text-info"
+            class="q-pa-xl text-h5 text-info"
           >
-            <p class="q-ma-md q-py-xl">
+            <p class="q-ma-md q-py-md">
               For beautiful eyes, look for the good in others; for beautiful
               lips, speak only words of kindness; and for poise, walk with the
               knowledge that you are never alone.

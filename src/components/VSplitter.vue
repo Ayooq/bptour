@@ -6,7 +6,7 @@
       :limits="[minPoint, maxPoint]"
       :horizontal="horizontal"
       style="height: 466px"
-      before-class="q-pl-md q-py-md overflow-hidden"
+      before-class="q-pl-md q-py-md"
       separator-class="q-ma-lg"
       after-class="overflow-hidden"
     >
@@ -46,11 +46,63 @@
 
             <q-item>
               <q-item-section avatar>
-                <q-icon color="primary" name="fas fa-mobile-alt" />
+                <q-icon
+                  class="contacts contacts__icon"
+                  size="md"
+                  color="primary"
+                  name="fas fa-mobile-alt"
+                />
               </q-item-section>
               <q-item-section>
                 <span class="text-h6">+7(707) 462-66-69</span>
                 <span class="text-h6">+7(705) 162-58-75</span>
+              </q-item-section>
+            </q-item>
+
+            <div class="row">
+              <q-separator inset="item" spaced />
+              <q-space class="col-auto q-ml-xl" />
+            </div>
+
+            <q-item>
+              <q-item-section avatar>
+                <q-icon
+                  class="contacts contacts__icon text-bold"
+                  size="md"
+                  color="primary"
+                  name="fab fa-whatsapp"
+                />
+              </q-item-section>
+              <q-item-section>
+                <span>
+                  <a
+                    :href="whatsAppLink"
+                    class="contacts contacts__link text-h6"
+                    target="_blank"
+                    >What's App</a
+                  >
+                </span>
+              </q-item-section>
+            </q-item>
+
+            <div class="row">
+              <q-separator inset="item" spaced />
+              <q-space class="col-auto q-ml-xl" />
+            </div>
+
+            <q-item>
+              <q-item-section avatar>
+                <q-icon color="primary" name="fas fa-mail-bulk" />
+              </q-item-section>
+              <q-item-section>
+                <span>
+                  <a
+                    :href="`mailto:${email}`"
+                    class="contacts contacts__link text-h6"
+                    target="_blank"
+                    >Напишите нам!</a
+                  >
+                </span>
               </q-item-section>
             </q-item>
           </q-list>
@@ -63,7 +115,7 @@
           color="primary"
           text-color="white"
           size="2rem"
-          :icon="avatarIcon"
+          :icon="separatorIcon"
         />
       </template>
 
@@ -88,25 +140,27 @@ export default {
   },
   data() {
     return {
-      avatarIcon: "fas fa-arrows-alt-h",
-      minPoint: 42,
-      maxPoint: 100,
+      email: "irinaplissova@gmail.com",
       horizontal: false,
+      minPoint: 50,
+      maxPoint: 100,
+      separatorIcon: "fas fa-arrows-alt-h",
       splitterModel: 50,
-      stackColumns: false
+      stackColumns: false,
+      whatsAppLink: "https://wa.me/77074626669"
     };
   },
   methods: {
     onResize({ width }) {
       if (width < 800) {
-        this.avatarIcon = "fas fa-arrows-alt-v";
+        this.separatorIcon = "fas fa-arrows-alt-v";
         this.horizontal = true;
         this.minPoint = 0;
         this.maxPoint = 94;
       } else {
-        this.avatarIcon = "fas fa-arrows-alt-h";
+        this.separatorIcon = "fas fa-arrows-alt-h";
         this.horizontal = false;
-        this.minPoint = 42;
+        this.minPoint = 50;
         this.maxPoint = 100;
       }
     }

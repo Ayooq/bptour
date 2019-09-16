@@ -17,13 +17,22 @@
         </q-avatar>
         <span class="gt-xs">Наверх</span>
       </q-btn>
-      <span class="col-auto">Все права защищены. &copy; 2019</span>
+      <span class="col text-center">Все права защищены. &copy; 2019</span>
       <span class="col-auto">
-        Наш Инстаграм:
+        <span class="gt-xs">Наши соцсети:</span>
         <q-btn
+          :href="this.whatsAppLink"
           class="text-light"
           type="a"
-          href="https://www.instagram.com/buroput18/"
+          target="_blank"
+          icon="fab fa-whatsapp"
+          flat
+          round
+        />
+        <q-btn
+          :href="this.instagramLink"
+          class="text-light"
+          type="a"
           target="_blank"
           icon="fab fa-instagram"
           flat
@@ -37,6 +46,14 @@
 <script>
 export default {
   name: "AppFooter",
+  props: {
+    links: Object
+  },
+  data() {
+    return {
+      ...this.links
+    };
+  },
   methods: {
     changeTab(val) {
       this.$emit("change-tab", val);

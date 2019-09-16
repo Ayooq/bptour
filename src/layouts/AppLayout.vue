@@ -1,6 +1,6 @@
 <template>
   <q-layout view="hHh Lpr fff" class="font-primary">
-    <AppHeader :tab="tab" @change-tab="changeTab" />
+    <AppHeader :tab="tab" :insta="instagramLink" @change-tab="changeTab" />
 
     <!-- <AppDrawers /> -->
 
@@ -8,7 +8,10 @@
       <router-view />
     </q-page-container>
 
-    <AppFooter @change-tab="changeTab" />
+    <AppFooter
+      :links="{ whatsAppLink, instagramLink }"
+      @change-tab="changeTab"
+    />
   </q-layout>
 </template>
 
@@ -21,6 +24,12 @@ export default {
     AppHeader,
     // AppDrawers,
     AppFooter
+  },
+  data() {
+    return {
+      instagramLink: "https://www.instagram.com/buroput18/",
+      whatsAppLink: "https://wa.me/77074626669"
+    };
   },
   computed: {
     tab() {

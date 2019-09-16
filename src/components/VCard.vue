@@ -3,9 +3,10 @@
     <q-card-section>
       <q-item-label
         id="tours"
-        class="tours tours__label q-pa-xl inset-shadow text-h1"
-        >Горящие туры</q-item-label
+        class="tours tours__label-bg q-py-md inset-shadow"
       >
+        <span class="tours tours__label-header">Основные направления</span>
+      </q-item-label>
       <q-carousel
         v-model="slide"
         :autoplay="autoplay"

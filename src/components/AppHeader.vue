@@ -70,9 +70,9 @@
       </q-btn-dropdown>
 
       <q-btn
+        :href="this.insta"
         class="on-right text-light"
         type="a"
-        href="https://www.instagram.com/buroput18/"
         target="_blank"
         icon="fab fa-instagram"
         flat
@@ -85,7 +85,10 @@
 <script>
 export default {
   name: "AppHeader",
-  props: ["tab"],
+  props: {
+    tab: String,
+    insta: String
+  },
   computed: {
     currentTab: {
       get() {

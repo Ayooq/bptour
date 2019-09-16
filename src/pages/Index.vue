@@ -70,7 +70,19 @@ export default {
       background: radial-gradient(ellipse at top, $primary 0, $deep-orange-12 100%)
 
   &__label
-    background-color: $deep-orange-10
+    &-bg
+      padding: 5em 0
+      background-color: $deep-orange-10
+
+    &-header
+      font-size: 5rem
+      line-height: 1em
+
+      @media (max-width: $breakpoint-sm-max)
+        font-size: 4rem
+
+      @media (max-width: $breakpoint-xs-max)
+        font-size: 3rem
 
   &__caption
     padding: 0.4em 1em 1.3em
@@ -84,4 +96,14 @@ export default {
 .contacts
   color: $dark
   text-shadow: none
+
+  &__icon
+    margin-left: -5px
+
+  &__link
+    color: $secondary
+    text-decoration: none
+
+    &:hover
+      color: $info
 </style>
