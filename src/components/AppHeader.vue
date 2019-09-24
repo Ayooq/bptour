@@ -71,7 +71,7 @@
 
       <q-btn
         :href="this.insta"
-        class="on-right text-light"
+        class="on-right text-light gt-xs"
         type="a"
         target="_blank"
         icon="fab fa-instagram"
