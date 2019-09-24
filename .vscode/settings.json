@@ -1,0 +1,108 @@
+{
+  "attrsSorter.order": [
+    "is",
+    "v-for",
+    "v-if",
+    "v-else-if",
+    "v-else",
+    "v-show",
+    "v-cloak",
+    "v-once",
+    "v-pre",
+    "id",
+    "ref",
+    "key",
+    "v-slot",
+    "#.+",
+    "v-model",
+    "v-model.+",
+    "v-bind",
+    "v-bind.+",
+    ":.+",
+    "v-text",
+    "v-text.+",
+    "v-html",
+    "v-html.+",
+    "class",
+    "v-on.+",
+    "@.+",
+    "name",
+    "data-.+",
+    "ng-.+",
+    "src",
+    "for",
+    "type",
+    "href",
+    "values",
+    "title",
+    "alt",
+    "role",
+    "aria-.+",
+    "$unknown$"
+  ],
+
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.wordWrap": "wordWrapColumn",
+
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    }
+  ],
+
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+
+  "files.associations": {
+    "*.sql": "sql"
+  },
+
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  "prettier.eslintIntegration": true,
+
+  "sqltools.useNodeRuntime": true,
+
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Monokai Pro",
+
+  "vetur.experimental.templateInterpolationService": true,
+  "vetur.format.defaultFormatter.html": "prettyhtml",
+  "vetur.format.defaultFormatter.js": "prettier-eslint",
+
+  "vim.handleKeys": {
+    "<C-c>": false,
+    "<C-y>": false,
+    "<C-z>": false,
+    "<C-x>": false,
+    "<C-j>": false,
+    "<C-k>": false,
+    "<C-b>": false,
+    "<C-w>": false
+  },
+
+  "workbench.iconTheme": "vscode-icons",
+
+  "zenMode.hideLineNumbers": false,
+  "zenMode.hideStatusBar": false,
+  "sqltools.connections": [
+    {
+      "database": "./focus/focus.db",
+      "dialect": "SQLite",
+      "name": "focus"
+    }
+  ]
+}

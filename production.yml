@@ -1,0 +1,61 @@
+version: "3"
+services:
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    image: nginx
+    restart: always
+    volumes:
+      - ./server/static/admin:/usr/share/nginx/html/static/admin
+    ports:
+      - 80:80
+    depends_on:
+      - server
+    command: nginx -g 'daemon off';
+
+  server:
+    container_name: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    hostname: server
+    ports:
+      - 8000:8000
+    volumes:
+      - ./server:/srv/project
+    depends_on:
+      - postgres
+    env_file: .env
+    command: >
+      bash -c '
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      gunicorn server.wsgi -b 0.0.0.0:8000'
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    hostname: postgres
+    ports:
+      - 5432:5432
+
+  redis:
+    container_name: redis
+    image: redis:latest
+    hostname: redis
+    ports:
+      - 6379:6379
+
+  celery:
+    container_name: celery
+    build:
+      context: ./server
+    env_file: .env
+    command: celery -A project worker -l info
+    volumes:
+      - ./server:/srv/project
+    depends_on:
+      - server
+      - redis
