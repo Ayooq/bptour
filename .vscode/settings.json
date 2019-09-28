@@ -72,8 +72,6 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
 
-  "prettier.eslintIntegration": true,
-
   "sqltools.useNodeRuntime": true,
 
   "window.zoomLevel": 0,

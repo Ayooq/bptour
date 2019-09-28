@@ -25,7 +25,7 @@
           <q-btn
             v-scroll-to="'#tours'"
             class="hero hero__cta q-mb-sm bg-light"
-            label="Начать путешествие"
+            label="Отправиться в путешествие"
             glossy
             push
             rounded
