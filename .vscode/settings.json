@@ -102,5 +102,6 @@
       "dialect": "SQLite",
       "name": "focus"
     }
-  ]
+  ],
+  "python.pythonPath": "c:\\Users\\inc\\v\\bptour\\venv\\Scripts\\python.exe"
 }
