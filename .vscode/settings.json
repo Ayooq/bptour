@@ -72,8 +72,6 @@
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
 
-  "prettier.eslintIntegration": true,
-
   "sqltools.useNodeRuntime": true,
 
   "window.zoomLevel": 0,
@@ -104,5 +102,6 @@
       "dialect": "SQLite",
       "name": "focus"
     }
-  ]
+  ],
+  "python.pythonPath": "c:\\Users\\inc\\v\\bptour\\venv\\Scripts\\python.exe"
 }
