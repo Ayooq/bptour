@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 wagtail = "*"
+ipython = "*"
+django-extensions = "*"
+django-debug-toolbar = "*"
 
 [requires]
 python_version = "3.7"
