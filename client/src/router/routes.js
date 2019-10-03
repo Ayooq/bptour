@@ -1,8 +1,20 @@
+import AppLayout from "layouts/AppLayout.vue";
+import HomePage from "pages/Index.vue";
+import CountriesPage from "pages/Countries.vue";
+import ErrorPage from "pages/Error404.vue";
+
 const routes = [
   {
     path: "/",
-    component: () => import("layouts/AppLayout.vue"),
-    children: [{ path: "", component: () => import("pages/Index.vue") }]
+    component: AppLayout,
+    children: [
+      { path: "", name: "home", component: HomePage },
+      {
+        path: "countries",
+        name: "countries",
+        component: CountriesPage
+      }
+    ]
   }
 ];
 
@@ -10,7 +22,7 @@ const routes = [
 if (process.env.MODE !== "ssr") {
   routes.push({
     path: "*",
-    component: () => import("pages/Error404.vue")
+    component: ErrorPage
   });
 }
 

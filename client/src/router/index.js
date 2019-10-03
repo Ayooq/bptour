@@ -17,7 +17,23 @@ export default function(/* { store, ssrContext } */) {
       if (savedPosition) {
         return savedPosition;
       }
-      return { x: 0, y: 0 };
+
+      if (to.hash) {
+        return new Promise(resolve => {
+          setTimeout(() => {
+            resolve({
+              selector: to.hash,
+              offset: { x: 0, y: 10 }
+            });
+          }, 100);
+        });
+      }
+
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve({ x: 0, y: 0 });
+        }, 100);
+      });
     },
     routes,
 

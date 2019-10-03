@@ -41,7 +41,7 @@ module.exports = function(ctx) {
       components: [
         "QLayout",
         "QHeader",
-        // "QDrawer",
+        "QDrawer",
         "QFooter",
 
         "QPageContainer",
@@ -58,10 +58,15 @@ module.exports = function(ctx) {
         "QCard",
         "QCardSection",
 
+        "QDate",
+
         "QCarousel",
         "QCarouselSlide",
 
         "QExpansionItem",
+
+        "QForm",
+        "QInput",
 
         "QIcon",
 
@@ -72,6 +77,8 @@ module.exports = function(ctx) {
 
         "QParallax",
 
+        "QPopupProxy",
+
         "QResizeObserver",
 
         "QSeparator",
@@ -79,7 +86,7 @@ module.exports = function(ctx) {
         "QSpace",
 
         "QTabs",
-        "QTab"
+        "QRouteTab"
       ],
 
       directives: ["Ripple"],
@@ -122,9 +129,9 @@ module.exports = function(ctx) {
       open: true // opens browser window automatically
     },
 
-    // animations: 'all', // --- includes all animations
+    animations: "all", // --- includes all animations
     // https://quasar.dev/options/animations
-    animations: [],
+    // animations: [],
 
     // htmlVariables: {
     //   productName: "Бюро Путешествий",

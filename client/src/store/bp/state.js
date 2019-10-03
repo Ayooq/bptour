@@ -1,5 +1,5 @@
 export default {
-  drawerLeft: true,
+  drawerLeft: false,
   drawerRight: false,
   tab: "home"
 };

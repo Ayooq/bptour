@@ -2,14 +2,7 @@
   <q-header class="bp-header" elevated>
     <q-toolbar>
       <q-toolbar-title shrink>
-        <q-btn
-          v-scroll-to="'#home'"
-          class="bp-logo"
-          dense
-          flat
-          rounded
-          @click="changeTab('home')"
-        >
+        <q-btn class="bp-logo" dense flat rounded @click="goHome">
           <q-avatar class="on-left">
             <img
               class="bp-logo bp-logo__img bp-logo__img_filled"
@@ -25,52 +18,75 @@
       <q-space />
 
       <q-tabs v-model="currentTab" class="orientation-landscape" shrink stretch>
-        <q-tab
-          v-scroll-to="'#home'"
+        <q-route-tab
+          :to="{ name: 'home' }"
           name="home"
           label="Главная"
+          exact
           @click="changeTab('home')"
         />
-        <q-tab
-          v-scroll-to="'#tours'"
+        <q-route-tab
+          :to="{ name: 'home', hash: '#tours' }"
           name="tours"
           label="Туры"
           @click="changeTab('tours')"
         />
-        <q-tab
-          v-scroll-to="'#contacts'"
+        <q-route-tab
+          :to="{ name: 'home', hash: '#contacts' }"
           name="contacts"
           label="О нас"
           @click="changeTab('contacts')"
         />
+        <q-route-tab
+          :to="{ name: 'countries' }"
+          name="countries"
+          label="Страны"
+          @click="changeTab('countries')"
+        />
       </q-tabs>
 
       <q-btn-dropdown class="orientation-portrait" auto-close flat stretch>
-        <template v-slot:label>
+        <template #label>
           <div class="row items-center no-wrap">
             <div class="text-center">Навигация</div>
             <q-icon name="fas fa-road" right />
           </div>
         </template>
         <q-list>
-          <q-item v-scroll-to="'#home'" clickable @click="changeTab('home')">
+          <q-item
+            :to="{ name: 'home' }"
+            clickable
+            exact
+            @click="changeTab('home')"
+          >
             <q-item-section>Главная</q-item-section>
           </q-item>
-          <q-item v-scroll-to="'#tours'" clickable @click="changeTab('tours')">
+          <q-item
+            :to="{ name: 'home', hash: '#tours' }"
+            clickable
+            @click="changeTab('tours')"
+          >
             <q-item-section>Туры</q-item-section>
           </q-item>
           <q-item
-            v-scroll-to="'#contacts'"
+            :to="{ name: 'home', hash: '#contacts' }"
             clickable
             @click="changeTab('contacts')"
           >
             <q-item-section>О нас</q-item-section>
           </q-item>
+          <q-item
+            :to="{ name: 'countries' }"
+            clickable
+            @click="changeTab('countries')"
+          >
+            <q-item-section>Страны</q-item-section>
+          </q-item>
         </q-list>
       </q-btn-dropdown>
 
       <q-btn
-        :href="this.insta"
+        :href="insta"
         class="on-right text-light gt-xs"
         type="a"
         target="_blank"
@@ -100,44 +116,12 @@ export default {
     }
   },
   methods: {
-    changeTab(val) {
-      this.$emit("change-tab", val);
+    goHome() {
+      if (this.$route.fullPath !== "/") {
+        this.$router.push("/");
+      }
     }
   }
-  // computed: {
-  //   drawerLeft: {
-  //     get() {
-  //       return this.$store.state.bp.drawerLeft;
-  //     },
-  //     set(val) {
-  //       this.$store.commit("bp/updDrawerState", val);
-  //     }
-  //   },
-  //   drawerRight: {
-  //     get() {
-  //       return this.$store.state.bp.drawerRight;
-  //     },
-  //     set(val) {
-  //       this.$store.commit("bp/updDrawerState", val);
-  //     }
-  //   },
-  //   tab: {
-  //     get() {
-  //       return this.$store.state.bp.tab;
-  //     },
-  //     set(val) {
-  //       this.$store.commit("bp/updHeaderTabValue", val);
-  //     }
-  //   }
-  // },
-  // methods: {
-  //   toggleDrawerLeft() {
-  //     return this.drawerLeft.setProperty("l");
-  //   },
-  //   toggleDrawerRight() {
-  //     return this.drawerRight("r");
-  //   }
-  // }
 };
 </script>
 

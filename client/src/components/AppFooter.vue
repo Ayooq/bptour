@@ -7,7 +7,7 @@
         dense
         flat
         rounded
-        @click="changeTab('home')"
+        @click="handleTabChange('home')"
       >
         <q-avatar class="on-left">
           <img
@@ -55,6 +55,14 @@ export default {
     };
   },
   methods: {
+    handleTabChange(tab) {
+      if (this.$route.name === "home") {
+        if (this.$route.hash) {
+          this.$router.replace("/");
+        }
+        this.changeTab(tab);
+      }
+    },
     changeTab(val) {
       this.$emit("change-tab", val);
     }

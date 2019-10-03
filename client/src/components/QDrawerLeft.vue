@@ -202,9 +202,6 @@ export default {
     };
   },
   computed: {
-    drawerLeft() {
-      return this.$store.state.bp.drawerLeft;
-    },
     isValidName() {
       let reCheck = /^[a-zA-zА-Яа-я]+(\s+[a-zA-zА-Яа-я]+)*\s*$/;
 
@@ -247,7 +244,7 @@ export default {
         // we're done, we reset loading state
         this[`loading${number}`] = false;
       }, 3000);
-      this.$store.commit("bp/updDrawerLeftState");
+      this.$store.commit("bp/updDrawerState", "l");
     }
   }
 };

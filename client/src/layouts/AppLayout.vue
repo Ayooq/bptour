@@ -2,10 +2,12 @@
   <q-layout view="hHh Lpr fff" class="font-primary">
     <AppHeader :tab="tab" :insta="instagramLink" @change-tab="changeTab" />
 
-    <!-- <AppDrawers /> -->
+    <AppDrawers />
 
     <q-page-container>
-      <router-view />
+      <transition name="fade">
+        <router-view />
+      </transition>
     </q-page-container>
 
     <AppFooter
@@ -17,12 +19,12 @@
 
 <script>
 import AppHeader from "components/AppHeader";
-// import AppDrawers from "components/AppDrawers";
+import AppDrawers from "components/AppDrawers";
 import AppFooter from "components/AppFooter";
 export default {
   components: {
     AppHeader,
-    // AppDrawers,
+    AppDrawers,
     AppFooter
   },
   data() {
@@ -32,13 +34,37 @@ export default {
     };
   },
   computed: {
-    tab() {
-      return this.$store.state.bp.tab;
+    tab: {
+      get() {
+        return this.$store.state.bp.tab;
+      },
+      set(val) {
+        this.$store.commit("bp/updHeaderTabValue", val);
+      }
+    },
+    drawerLeft: {
+      get() {
+        return this.$store.state.bp.drawerLeft;
+      },
+      set(val) {
+        this.$store.commit("bp/updDrawerState", val);
+      }
     }
+    //   drawerRight: {
+    //     get() {
+    //       return this.$store.state.bp.drawerRight;
+    //     },
+    //     set(val) {
+    //       this.$store.commit("bp/updDrawerState", val);
+    //     }
+    //   },
   },
   methods: {
     changeTab(val) {
-      this.$store.commit("bp/updHeaderTabValue", val);
+      this.tab = val;
+    },
+    changeDrawerState(drawerName) {
+      this.$store.commit("bp/updDrawerState", drawerName);
     }
   }
 };
@@ -53,6 +79,12 @@ export default {
 .bg-dark
   background-color: $dark
   color: $light
+
+.fade-enter-active, .fade-leave-active
+  transition: opacity 0.4s
+
+.fade-enter, .fade-leave-to
+  opacity: 0
 
 .bp-logo
   &__title

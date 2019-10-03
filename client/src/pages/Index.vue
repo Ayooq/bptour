@@ -5,7 +5,9 @@
     </section>
 
     <section class="tours fit bg-dark">
-      <VCard />
+      <transition name="slide-up">
+        <VCard />
+      </transition>
       <VGallery />
     </section>
 
@@ -34,6 +36,13 @@ export default {
 </script>
 
 <style lang="stylus">
+.slide-up-enter-active
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1)
+
+.slide-up-enter
+  margin-top: 0
+  transform: translateY(-7rem)
+
 .hero
   &__logo
     max-width: 15em
