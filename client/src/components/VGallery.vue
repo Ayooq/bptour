@@ -35,7 +35,7 @@
             push
             glossy
             rounded
-            @click="handleScroll('contacts')"
+            @click="$emit('scrollto', 'contacts')"
             >Заказать тур</q-btn
           >
         </q-flashcard-section>
@@ -66,12 +66,6 @@ export default {
         minWidth: 0,
         borderRadius: "50%"
       };
-    }
-  },
-  methods: {
-    handleScroll(val) {
-      this.$store.commit("bp/updHeaderTabValue", val);
-      this.$router.push({ name: "home", hash: "#" + val });
     }
   }
 };

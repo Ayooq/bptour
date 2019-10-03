@@ -30,7 +30,7 @@
             push
             rounded
             unelevated
-            @click="handleScroll('tours')"
+            @click="$emit('scrollto', 'tours')"
           />
         </div>
       </div>
@@ -44,12 +44,6 @@ export default {
   computed: {
     parallaxHeight() {
       return window.innerHeight;
-    }
-  },
-  methods: {
-    handleScroll(val) {
-      this.$store.commit("bp/updHeaderTabValue", val);
-      this.$router.push({ name: "home", hash: "#" + val });
     }
   }
 };

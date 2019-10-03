@@ -1,14 +1,14 @@
 <template>
   <q-page class="flex transparent no-scroll bg-light">
     <section id="home" class="hero full-width">
-      <VParallax />
+      <VParallax @scrollto="handleScroll" />
     </section>
 
     <section class="tours fit bg-dark">
       <transition name="slide-up">
         <VCard />
       </transition>
-      <VGallery />
+      <VGallery @scrollto="handleScroll" />
     </section>
 
     <section id="contacts" class="contacts fit q-mt-xl bg-light">
@@ -31,6 +31,12 @@ export default {
     VCard,
     VGallery,
     VSplitter
+  },
+  methods: {
+    handleScroll(val) {
+      this.$store.commit("bp/updHeaderTabValue", val);
+      this.$router.push({ name: "home", hash: "#" + val });
+    }
   }
 };
 </script>

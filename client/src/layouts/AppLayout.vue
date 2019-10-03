@@ -1,6 +1,11 @@
 <template>
   <q-layout view="hHh Lpr fff" class="font-primary">
-    <AppHeader :tab="tab" :insta="instagramLink" @change-tab="changeTab" />
+    <AppHeader
+      :tab="tab"
+      :insta="instagramLink"
+      @change-tab="changeTab"
+      @go-home="goHome"
+    />
 
     <AppDrawers />
 
@@ -65,6 +70,11 @@ export default {
     },
     changeDrawerState(drawerName) {
       this.$store.commit("bp/updDrawerState", drawerName);
+    },
+    goHome() {
+      if (this.$route.fullPath !== "/") {
+        this.$router.push("/");
+      }
     }
   }
 };

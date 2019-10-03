@@ -2,7 +2,7 @@
   <q-header class="bp-header" elevated>
     <q-toolbar>
       <q-toolbar-title shrink>
-        <q-btn class="bp-logo" dense flat rounded @click="goHome">
+        <q-btn class="bp-logo" dense flat rounded @click="$emit('go-home')">
           <q-avatar class="on-left">
             <img
               class="bp-logo bp-logo__img bp-logo__img_filled"
@@ -112,13 +112,6 @@ export default {
       },
       set(val) {
         this.$store.commit("bp/updHeaderTabValue", val);
-      }
-    }
-  },
-  methods: {
-    goHome() {
-      if (this.$route.fullPath !== "/") {
-        this.$router.push("/");
       }
     }
   }
