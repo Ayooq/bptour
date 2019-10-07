@@ -30,7 +30,7 @@
             push
             rounded
             unelevated
-            @click="$emit('scrollto', 'tours')"
+            @click="$emit('change-route', 'home', '#tours')"
           />
         </div>
       </div>

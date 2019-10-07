@@ -103,5 +103,5 @@
       "name": "focus"
     }
   ],
-  "python.pythonPath": "venv/bin/python3.8"
+  "python.pythonPath": "/home/boris_zblade/.local/share/virtualenvs/sandbox-6nuLdgIl/bin/python"
 }

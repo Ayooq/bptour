@@ -1,14 +1,14 @@
 <template>
-  <q-page class="flex transparent no-scroll bg-light">
-    <section id="home" class="hero full-width">
-      <VParallax @scrollto="handleScroll" />
+  <q-page class="flex no-scroll bg-light">
+    <section class="hero full-width">
+      <VParallax @change-route="changeRoute" />
     </section>
 
     <section class="tours fit bg-dark">
-      <transition name="slide-up">
-        <VCard />
+      <transition appear enter-active-class="animated slideInUp">
+        <VHeroCard />
       </transition>
-      <VGallery @scrollto="handleScroll" />
+      <VGallery @change-route="changeRoute" />
     </section>
 
     <section id="contacts" class="contacts fit q-mt-xl bg-light">
@@ -20,35 +20,24 @@
 
 <script>
 import VParallax from "components/VParallax";
-import VCard from "components/VCard";
+import VHeroCard from "components/VHeroCard";
 import VGallery from "components/VGallery";
 import VSplitter from "components/VSplitter";
+import changeRoute from "src/mixins/handleRouteChange.js";
 
 export default {
   name: "PageIndex",
   components: {
     VParallax,
-    VCard,
+    VHeroCard,
     VGallery,
     VSplitter
   },
-  methods: {
-    handleScroll(val) {
-      this.$store.commit("bp/updHeaderTabValue", val);
-      this.$router.push({ name: "home", hash: "#" + val });
-    }
-  }
+  mixins: [changeRoute]
 };
 </script>
 
 <style lang="stylus">
-.slide-up-enter-active
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1)
-
-.slide-up-enter
-  margin-top: 0
-  transform: translateY(-7rem)
-
 .hero
   &__logo
     max-width: 15em

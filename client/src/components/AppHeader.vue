@@ -3,12 +3,14 @@
     <q-toolbar>
       <q-toolbar-title shrink>
         <q-btn class="bp-logo" dense flat rounded @click="$emit('go-home')">
-          <q-avatar class="on-left">
-            <img
-              class="bp-logo bp-logo__img bp-logo__img_filled"
-              src="statics/app-logo-128x128.png"
-            />
-          </q-avatar>
+          <transition appear enter-active-class="animated rotateIn">
+            <q-avatar class="on-left" style="animation-delay: 0.2s">
+              <img
+                class="bp-logo bp-logo__img bp-logo__img_filled"
+                src="statics/app-logo-128x128.png"
+              />
+            </q-avatar>
+          </transition>
           <span class="bp-logo bp-logo__title gt-xs q-ml-sm text-h5"
             >Бюро Путешествий</span
           >
@@ -17,31 +19,27 @@
 
       <q-space />
 
-      <q-tabs v-model="currentTab" class="orientation-landscape" shrink stretch>
-        <q-route-tab
-          :to="{ name: 'home' }"
+      <q-tabs v-model="tab" class="orientation-landscape" shrink stretch>
+        <q-tab
           name="home"
           label="Главная"
           exact
-          @click="changeTab('home')"
+          @click="$emit('change-route', 'home')"
         />
-        <q-route-tab
-          :to="{ name: 'home', hash: '#tours' }"
+        <q-tab
           name="tours"
           label="Туры"
-          @click="changeTab('tours')"
+          @click="$emit('change-route', 'home', '#tours')"
         />
-        <q-route-tab
-          :to="{ name: 'home', hash: '#contacts' }"
+        <q-tab
           name="contacts"
           label="О нас"
-          @click="changeTab('contacts')"
+          @click="$emit('change-route', 'home', '#contacts')"
         />
-        <q-route-tab
-          :to="{ name: 'countries' }"
+        <q-tab
           name="countries"
           label="Страны"
-          @click="changeTab('countries')"
+          @click="$emit('change-route', 'countries')"
         />
       </q-tabs>
 
@@ -53,33 +51,16 @@
           </div>
         </template>
         <q-list>
-          <q-item
-            :to="{ name: 'home' }"
-            clickable
-            exact
-            @click="changeTab('home')"
-          >
+          <q-item clickable exact @click="$emit('change-route', 'home')">
             <q-item-section>Главная</q-item-section>
           </q-item>
-          <q-item
-            :to="{ name: 'home', hash: '#tours' }"
-            clickable
-            @click="changeTab('tours')"
-          >
+          <q-item clickable @click="$emit('change-route', 'home', '#tours')">
             <q-item-section>Туры</q-item-section>
           </q-item>
-          <q-item
-            :to="{ name: 'home', hash: '#contacts' }"
-            clickable
-            @click="changeTab('contacts')"
-          >
+          <q-item clickable @click="$emit('change-route', 'home', '#contacts')">
             <q-item-section>О нас</q-item-section>
           </q-item>
-          <q-item
-            :to="{ name: 'countries' }"
-            clickable
-            @click="changeTab('countries')"
-          >
+          <q-item clickable @click="$emit('change-route', 'countries')">
             <q-item-section>Страны</q-item-section>
           </q-item>
         </q-list>
@@ -102,13 +83,12 @@
 export default {
   name: "AppHeader",
   props: {
-    tab: String,
     insta: String
   },
   computed: {
-    currentTab: {
+    tab: {
       get() {
-        return this.tab;
+        return this.$store.state.bp.tab;
       },
       set(val) {
         this.$store.commit("bp/updHeaderTabValue", val);

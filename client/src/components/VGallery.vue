@@ -35,7 +35,7 @@
             push
             glossy
             rounded
-            @click="$emit('scrollto', 'contacts')"
+            @click="$emit('change-route', 'home', '#contacts')"
             >Заказать тур</q-btn
           >
         </q-flashcard-section>

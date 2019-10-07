@@ -86,7 +86,7 @@ module.exports = function(ctx) {
         "QSpace",
 
         "QTabs",
-        "QRouteTab"
+        "QTab"
       ],
 
       directives: ["Ripple"],
