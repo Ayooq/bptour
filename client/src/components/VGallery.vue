@@ -30,12 +30,12 @@
         >
           <q-btn
             v-scroll-to="'#contacts'"
+            :to="{ name: 'home', hash: '#contacts' }"
             class="f-card f-card__btn"
             size="xl"
             push
             glossy
             rounded
-            @click="$emit('change-route', 'home', '#contacts')"
             >Заказать тур</q-btn
           >
         </q-flashcard-section>

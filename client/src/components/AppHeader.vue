@@ -1,8 +1,8 @@
 <template>
   <q-header class="bp-header" elevated>
     <q-toolbar>
-      <q-toolbar-title shrink>
-        <q-btn class="bp-logo" dense flat rounded @click="$emit('go-home')">
+      <q-toolbar-title>
+        <q-btn :to="{ name: 'home' }" class="bp-logo" dense flat rounded>
           <transition appear enter-active-class="animated rotateIn">
             <q-avatar class="on-left" style="animation-delay: 0.2s">
               <img
@@ -17,29 +17,14 @@
         </q-btn>
       </q-toolbar-title>
 
-      <q-space />
-
       <q-tabs v-model="tab" class="orientation-landscape" shrink stretch>
-        <q-tab
-          name="home"
-          label="Главная"
+        <q-route-tab
+          v-for="(item, index) in tabs"
+          :key="index"
+          :label="item[1]"
+          :name="item[0]"
+          :to="{ name: item[2], hash: item[3] }"
           exact
-          @click="$emit('change-route', 'home')"
-        />
-        <q-tab
-          name="tours"
-          label="Туры"
-          @click="$emit('change-route', 'home', '#tours')"
-        />
-        <q-tab
-          name="contacts"
-          label="О нас"
-          @click="$emit('change-route', 'home', '#contacts')"
-        />
-        <q-tab
-          name="countries"
-          label="Страны"
-          @click="$emit('change-route', 'countries')"
         />
       </q-tabs>
 
@@ -51,17 +36,14 @@
           </div>
         </template>
         <q-list>
-          <q-item clickable exact @click="$emit('change-route', 'home')">
-            <q-item-section>Главная</q-item-section>
-          </q-item>
-          <q-item clickable @click="$emit('change-route', 'home', '#tours')">
-            <q-item-section>Туры</q-item-section>
-          </q-item>
-          <q-item clickable @click="$emit('change-route', 'home', '#contacts')">
-            <q-item-section>О нас</q-item-section>
-          </q-item>
-          <q-item clickable @click="$emit('change-route', 'countries')">
-            <q-item-section>Страны</q-item-section>
+          <q-item
+            v-for="(item, index) in tabs"
+            :key="index"
+            :to="{ name: item[2], hash: item[3] }"
+            clickable
+            exact
+          >
+            <q-item-section>{{ item[1] }}</q-item-section>
           </q-item>
         </q-list>
       </q-btn-dropdown>
@@ -84,6 +66,16 @@ export default {
   name: "AppHeader",
   props: {
     insta: String
+  },
+  data() {
+    return {
+      tabs: [
+        ["home", "Главная", "home", ""],
+        ["tours", "Туры", "home", "#tours"],
+        ["contacts", "О нас", "home", "#contacts"],
+        ["countries", "Страны", "countries", ""]
+      ]
+    };
   },
   computed: {
     tab: {

@@ -1,69 +1,57 @@
 <template>
   <q-layout view="hHh Lpr fff" class="font-primary">
-    <AppHeader :insta="instagramLink" @change-route="changeRoute" />
+    <AppHeader :insta="instagramLink" />
 
-    <AppDrawers />
+    <!-- <AppDrawers /> -->
 
     <q-page-container>
-      <transition
-        appear
-        enter-active-class="animated fadeIn"
-        leave-active-class="animated fadeOut"
-        mode="out-in"
-      >
-        <router-view id="page" />
-      </transition>
+      <router-view id="page" />
     </q-page-container>
 
-    <AppFooter
-      :links="{ whatsAppLink, instagramLink }"
-      @change-route="changeRoute"
-    />
+    <AppFooter :links="{ whatsAppLink, instagramLink }" />
   </q-layout>
 </template>
 
 <script>
 import AppHeader from "components/AppHeader";
-import AppDrawers from "components/AppDrawers";
+// import AppDrawers from "components/AppDrawers";
 import AppFooter from "components/AppFooter";
-import changeRoute from "src/mixins/handleRouteChange.js";
 
 export default {
   components: {
     AppHeader,
-    AppDrawers,
+    // AppDrawers,
     AppFooter
   },
-  mixins: [changeRoute],
   data() {
     return {
       instagramLink: "https://www.instagram.com/buroput18/",
       whatsAppLink: "https://wa.me/77074626669"
     };
-  },
-  computed: {
-    drawerLeft: {
-      get() {
-        return this.$store.state.bp.drawerLeft;
-      },
-      set(val) {
-        this.$store.commit("bp/updDrawerState", val);
-      }
-    }
-    //   drawerRight: {
-    //     get() {
-    //       return this.$store.state.bp.drawerRight;
-    //     },
-    //     set(val) {
-    //       this.$store.commit("bp/updDrawerState", val);
-    //     }
-    //   },
-  },
-  methods: {
-    changeDrawerState(drawerName) {
-      this.$store.commit("bp/updDrawerState", drawerName);
-    }
   }
+  // computed: {
+  //   drawerLeft: {
+  //     get() {
+  //       return this.$store.state.bp.drawerLeft;
+  //     },
+  //     set(val) {
+  //       this.$store.commit("bp/updDrawerState", val);
+  //     }
+  //   }
+  //   drawerRight: {
+  //     get() {
+  //       return this.$store.state.bp.drawerRight;
+  //     },
+  //     set(val) {
+  //       this.$store.commit("bp/updDrawerState", val);
+  //     }
+  //   },
+  // },
+  // methods: {
+  //   changeDrawerState(drawerName) {
+  //     this.$store.commit("bp/updDrawerState", drawerName);
+  //   }
+  // }
 };
 </script>
 

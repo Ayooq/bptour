@@ -24,13 +24,13 @@
           <p class="text-h3 text-center">Бюро Путешествий</p>
           <q-btn
             v-scroll-to="'#tours'"
+            :to="{ name: 'home', hash: '#tours' }"
             class="hero hero__cta q-mb-sm bg-light"
             label="Отправиться в путешествие"
             glossy
             push
             rounded
             unelevated
-            @click="$emit('change-route', 'home', '#tours')"
           />
         </div>
       </div>

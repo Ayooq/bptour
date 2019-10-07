@@ -86,7 +86,10 @@ module.exports = function(ctx) {
         "QSpace",
 
         "QTabs",
-        "QTab"
+        "QTab",
+        "QRouteTab",
+        "QTabPanels",
+        "QTabPanel"
       ],
 
       directives: ["Ripple"],
@@ -129,9 +132,9 @@ module.exports = function(ctx) {
       open: true // opens browser window automatically
     },
 
-    animations: "all", // --- includes all animations
+    // animations: "all", // --- includes all animations
     // https://quasar.dev/options/animations
-    // animations: [],
+    animations: ["rotateIn", "slideInUp"],
 
     // htmlVariables: {
     //   productName: "Бюро Путешествий",

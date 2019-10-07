@@ -1,8 +1,5 @@
 <template>
-  <q-card
-    class="tours tours__content tours__content_bg q-pt-xl shadow-5"
-    style="animation-delay: 0.4s"
-  >
+  <q-card class="tours tours__content tours__content_bg q-pt-xl shadow-5">
     <q-card-section>
       <q-item-label
         id="tours"
@@ -13,7 +10,6 @@
       <q-carousel
         v-model="slide"
         :autoplay="autoplay"
-        id="details"
         class="shadow-24"
         height="30rem"
         transition-next="jump-left"
@@ -32,6 +28,7 @@
           :key="index"
           :name="index"
           :img-src="item"
+          id="details"
           @click="expandInfo"
         >
           <div class="tours tours__caption absolute-bottom text-h3">

@@ -3,11 +3,11 @@
     <q-toolbar class="row justify-between">
       <q-btn
         v-scroll-to="'#page'"
+        :to="{ name: this.$route.name }"
         class="bp-logo col-auto"
         dense
         flat
         rounded
-        @click="handleScroll('home')"
       >
         <q-avatar class="on-left">
           <img
@@ -53,15 +53,6 @@ export default {
     return {
       ...this.links
     };
-  },
-  methods: {
-    handleScroll(routeName) {
-      console.log(this.$route.name);
-      console.log(routeName);
-      if (this.$route.name === routeName) {
-        this.$emit("change-route", routeName);
-      }
-    }
   }
 };
 </script>
