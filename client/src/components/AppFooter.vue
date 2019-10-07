@@ -2,12 +2,12 @@
   <q-footer class="bp-footer bg-dark shadow-21" elevated>
     <q-toolbar class="row justify-between">
       <q-btn
-        v-scroll-to="'#home'"
+        v-scroll-to="'#page'"
         class="bp-logo col-auto"
         dense
         flat
         rounded
-        @click="changeTab('home')"
+        @click="handleScroll('home')"
       >
         <q-avatar class="on-left">
           <img
@@ -55,8 +55,12 @@ export default {
     };
   },
   methods: {
-    changeTab(val) {
-      this.$emit("change-tab", val);
+    handleScroll(routeName) {
+      console.log(this.$route.name);
+      console.log(routeName);
+      if (this.$route.name === routeName) {
+        this.$emit("change-route", routeName);
+      }
     }
   }
 };

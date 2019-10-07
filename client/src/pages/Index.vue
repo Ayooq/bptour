@@ -1,12 +1,14 @@
 <template>
-  <q-page class="flex transparent no-scroll bg-light">
-    <section id="home" class="hero full-width">
-      <VParallax />
+  <q-page class="flex no-scroll bg-light">
+    <section class="hero full-width">
+      <VParallax @change-route="changeRoute" />
     </section>
 
     <section class="tours fit bg-dark">
-      <VCard />
-      <VGallery />
+      <transition appear enter-active-class="animated slideInUp">
+        <VHeroCard />
+      </transition>
+      <VGallery @change-route="changeRoute" />
     </section>
 
     <section id="contacts" class="contacts fit q-mt-xl bg-light">
@@ -18,18 +20,20 @@
 
 <script>
 import VParallax from "components/VParallax";
-import VCard from "components/VCard";
+import VHeroCard from "components/VHeroCard";
 import VGallery from "components/VGallery";
 import VSplitter from "components/VSplitter";
+import changeRoute from "src/mixins/handleRouteChange.js";
 
 export default {
   name: "PageIndex",
   components: {
     VParallax,
-    VCard,
+    VHeroCard,
     VGallery,
     VSplitter
-  }
+  },
+  mixins: [changeRoute]
 };
 </script>
 

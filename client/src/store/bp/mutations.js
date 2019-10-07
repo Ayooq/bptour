@@ -1,7 +1,7 @@
 export function updDrawerState(state, value) {
-  if (value === "l") {
+  if (value === "left") {
     state.drawerLeft = !state.drawerLeft;
-  } else if (value === "r") {
+  } else if (value === "right") {
     state.drawerRight = !state.drawerRight;
   }
 }

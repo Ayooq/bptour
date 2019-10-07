@@ -1,5 +1,8 @@
 <template>
-  <q-card class="tours tours__content tours__content_bg q-pt-xl shadow-5">
+  <q-card
+    class="tours tours__content tours__content_bg q-pt-xl shadow-5"
+    style="animation-delay: 0.4s"
+  >
     <q-card-section>
       <q-item-label
         id="tours"
@@ -53,7 +56,7 @@
 
 <script>
 export default {
-  name: "VCard",
+  name: "VHeroCard",
   data() {
     return {
       autoplay: true,

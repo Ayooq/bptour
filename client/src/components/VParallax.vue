@@ -30,7 +30,7 @@
             push
             rounded
             unelevated
-            @click="$store.commit('bp/updHeaderTabValue', 'tours')"
+            @click="$emit('change-route', 'home', '#tours')"
           />
         </div>
       </div>

@@ -35,7 +35,7 @@
             push
             glossy
             rounded
-            @click="changeTab('contacts')"
+            @click="$emit('change-route', 'home', '#contacts')"
             >Заказать тур</q-btn
           >
         </q-flashcard-section>
@@ -66,19 +66,6 @@ export default {
         minWidth: 0,
         borderRadius: "50%"
       };
-    },
-    tab: {
-      get() {
-        return this.$store.state.bp.tab;
-      },
-      set(val) {
-        this.$store.commit("bp/updHeaderTabValue", val);
-      }
-    }
-  },
-  methods: {
-    changeTab(val) {
-      this.tab = val;
     }
   }
 };
