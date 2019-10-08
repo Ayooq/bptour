@@ -5,7 +5,9 @@
     <!-- <AppDrawers /> -->
 
     <q-page-container>
-      <router-view id="page" />
+      <keep-alive>
+        <router-view id="page" />
+      </keep-alive>
     </q-page-container>
 
     <AppFooter :links="{ whatsAppLink, instagramLink }" />

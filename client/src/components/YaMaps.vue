@@ -3,7 +3,6 @@
     <ymap-marker
       :coords="coords"
       :icon="markerIcon"
-      ymap-class="map ymap-body"
       marker-id="123"
       hint-content="Бюро Путешествий"
     />
@@ -20,15 +19,15 @@ export default {
     ymapMarker
   },
   data: () => ({
-    settings: {
-      apiKey: "affbda23-af60-4215-af8b-174a8101d71c",
-      lang: "ru_RU",
-      version: "2.1"
-    },
     coords: [52.281892, 76.942061],
     markerIcon: {
       color: "orange",
       content: "Мы здесь!"
+    },
+    settings: {
+      apiKey: "affbda23-af60-4215-af8b-174a8101d71c",
+      lang: "ru_RU",
+      version: "2.1"
     }
   }),
   methods: {
@@ -42,9 +41,5 @@ export default {
 <style lang="stylus">
 .ymap-container
   >:nth-child(1)
-    min-width: 1000px
     min-height: 25.5rem
-
-    @media (max-width: $breakpoint-sm-max)
-      min-width: 300px
 </style>
