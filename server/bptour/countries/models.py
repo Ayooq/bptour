@@ -5,23 +5,30 @@ from wagtail.core.fields import RichTextField
 from wagtail.search import index
 
 
-class DetailPage(Page):
-    country = models.CharField(verbose_name='заголовок', max_length=80)
-    subtitle = models.CharField(verbose_name='подзаголовок', max_length=250)
-    description = RichTextField(blank=True)
-    additional = RichTextField(blank=True)
+class CountryDetailPage(Page):
+    country = models.CharField(verbose_name='страна', max_length=80)
+    description = RichTextField(
+        blank=True,
+        features=['bold', 'ol', 'ul', 'hr'],
+        verbose_name='описание',
+    )
+    additional = RichTextField(
+        blank=True,
+        features=['bold', 'ol', 'ul', 'hr'],
+        verbose_name='дополнительная информация',
+    )
 
     search_fields = Page.search_fields + [
-        index.SearchField('title'),
-        index.SearchField('subtitle'),
+        index.SearchField('country'),
         index.SearchField('description'),
         index.SearchField('additional'),
     ]
 
-    content_panels = Page.content_panels + [
-        FieldPanel('date'),
-        FieldPanel('title'),
-        FieldPanel('subtitle'),
+    content_panels = [
+        FieldPanel('country'),
         FieldPanel('description', classname="full"),
         FieldPanel('additional', classname="full"),
     ]
+
+    class Meta:
+        verbose_name = 'Детальная информация о стране'

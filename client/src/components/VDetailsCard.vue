@@ -4,7 +4,6 @@
 
     <q-card-section>
       <div class="text-h6 text-secondary">Our Changing Planet</div>
-      <div class="text-subtitle2 text-secondary">by John Doe</div>
     </q-card-section>
 
     <q-tabs v-model="tab" class="text-info">
