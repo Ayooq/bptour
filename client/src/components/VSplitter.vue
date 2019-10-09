@@ -6,7 +6,7 @@
       :limits="[minPoint, maxPoint]"
       :horizontal="horizontal"
       :separator-style="separatorStyle"
-      style="height: 550px"
+      style="height: 480px"
       before-class="q-pl-md q-mt-md overflow-hidden"
       after-class="overflow-hidden"
     >
@@ -165,7 +165,7 @@ export default {
         this.maxPoint = 92;
       } else {
         this.contactsMarginBottom = "q-mb-xl";
-        this.separatorStyle.margin = "3rem 3rem 1.5rem";
+        this.separatorStyle.margin = "3rem";
         this.separatorIcon = "fas fa-arrows-alt-h";
         this.horizontal = false;
         this.minPoint = 50;
