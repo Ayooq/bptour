@@ -32,7 +32,7 @@
           @click="expandInfo"
         >
           <div class="tours tours__caption absolute-bottom text-h3">
-            {{ slideTitle }}
+            {{ slideTitles[index] }}
           </div>
         </q-carousel-slide>
       </q-carousel>
@@ -58,7 +58,13 @@ export default {
     return {
       autoplay: true,
       slide: 1,
-      slideTitle: "Пункт назначения",
+      slideTitles: [
+        "Пункт назначения 1",
+        "Пункт назначения 2",
+        "Пункт назначения 3",
+        "Пункт назначения 4",
+        "Пункт назначения 5"
+      ],
       images: [
         "statics/images/beach1.jpg",
         "statics/images/maldives1.jpg",
@@ -76,6 +82,24 @@ export default {
       tourDetail: null,
       expanded: false
     };
+  },
+  created() {
+    this.$axios
+      .get("/api/v2/pages/3/")
+      .then(response => {
+        console.log(response);
+        // this.slideTitles = response.data.carousel.slide.title;
+        // this.images = response.data.carousel.slide.image;
+        // this.toursInfo = response.data.carousel.slide.details;
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: "negative",
+          position: "top",
+          message: "Запрос к бэкэнду не удался",
+          icon: "report_problem"
+        });
+      });
   },
   methods: {
     showTourDetails() {

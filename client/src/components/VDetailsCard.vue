@@ -1,9 +1,9 @@
 <template>
   <q-card class="no-shadow">
-    <q-parallax src="statics/images/maldives2.jpg" :height="300" />
+    <q-parallax :src="image" :height="300" />
 
     <q-card-section>
-      <div class="text-h6 text-secondary">Our Changing Planet</div>
+      <div class="text-h6 text-secondary">{{ countryName }}</div>
     </q-card-section>
 
     <q-tabs v-model="tab" class="text-info">
@@ -15,66 +15,11 @@
 
     <q-tab-panels v-model="tab" animated>
       <q-tab-panel name="one">
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
-        <p>
-          The QCard component is a great way to display important pieces of
-          grouped content.
-        </p>
+        <p>{{ description }}</p>
       </q-tab-panel>
 
       <q-tab-panel name="two">
-        <p>
-          With so much content to display at once, and often so little screen
-          real-estate, Cards have fast become the design pattern of choice for
-          many companies, including the likes of Google and Twitter.
-        </p>
+        <p>{{ additional }}</p>
       </q-tab-panel>
     </q-tab-panels>
   </q-card>
@@ -85,8 +30,31 @@ export default {
   name: "VDetailsCard",
   data() {
     return {
+      image: "statics/images/maldives2.jpg",
+      countryName: "Название страны",
+      description: "Развёрнутое описание",
+      additional: "Дополнительная информация",
       tab: "one"
     };
+  },
+  created() {
+    this.$axios
+      .get("/api/v2/pages/3/")
+      .then(response => {
+        console.log(response);
+        // this.image = response.data.image;
+        // this.countryName = response.data.country.name;
+        // this.description = response.data.description;
+        // this.additional = response.data.additional;
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: "negative",
+          position: "top",
+          message: "Запрос к бэкэнду не удался",
+          icon: "report_problem"
+        });
+      });
   }
 };
 </script>

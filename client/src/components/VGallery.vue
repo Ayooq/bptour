@@ -17,11 +17,13 @@
             transition="zoom-out"
             class="q-pa-xl text-h5 text-info"
           >
-            <p class="q-ma-md q-py-md">
-              For beautiful eyes, look for the good in others; for beautiful
-              lips, speak only words of kindness; and for poise, walk with the
-              knowledge that you are never alone.
-            </p>
+            <span>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi
+              delectus temporibus atque vel maiores eaque, eos quaerat sapiente
+              itaque, quibusdam id autem a deserunt! Esse laborum nobis rerum
+              quia culpa?
+            </span>
+            <p class="q-ma-md q-py-md">{{ toursInfo[index] }}</p>
           </q-flashcard-section>
         </q-flashcard-section>
         <q-flashcard-section
@@ -55,6 +57,13 @@ export default {
         "statics/images/maldives2.jpg",
         "statics/images/polynesia.jpg",
         "statics/images/schilthorn.jpg"
+      ],
+      toursInfo: [
+        "For beautiful eyes, look for the good in others; for beautiful lips, speak only words of kindness; and for poise, walk with the knowledge that you are never alone.",
+        "Lorem Ipsum",
+        "Test",
+        "asdasdadqwdqw",
+        "Some text"
       ]
     };
   },
@@ -67,6 +76,23 @@ export default {
         borderRadius: "50%"
       };
     }
+  },
+  created() {
+    this.$axios
+      .get("/api/v2/pages/3/")
+      .then(response => {
+        console.log(response);
+        // this.images = response.data.image;
+        // this.images = response.data.details;
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: "negative",
+          position: "top",
+          message: "Запрос к бэкэнду не удался",
+          icon: "report_problem"
+        });
+      });
   }
 };
 </script>

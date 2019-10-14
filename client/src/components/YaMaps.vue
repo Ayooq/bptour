@@ -41,5 +41,5 @@ export default {
 <style lang="stylus">
 .ymap-container
   >:nth-child(1)
-    min-height: 25.5rem
+    min-height: 24rem
 </style>

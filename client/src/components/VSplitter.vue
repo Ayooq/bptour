@@ -6,7 +6,7 @@
       :limits="[minPoint, maxPoint]"
       :horizontal="horizontal"
       :separator-style="separatorStyle"
-      style="height: 480px"
+      style="height: 550px"
       before-class="q-pl-md q-mt-md overflow-hidden"
       after-class="overflow-hidden"
     >
@@ -79,7 +79,7 @@
                     :href="whatsAppLink"
                     class="contacts contacts__link text-h6"
                     target="_blank"
-                    >What's App</a
+                    >{{ whatsAppCaption }}</a
                   >
                 </span>
               </q-item-section>
@@ -97,10 +97,10 @@
               <q-item-section>
                 <span>
                   <a
-                    :href="`mailto:${email}`"
+                    :href="`mailto:${emailLink}`"
                     class="contacts contacts__link text-h6"
                     target="_blank"
-                    >Напишите нам!</a
+                    >{{ emailCaption }}</a
                   >
                 </span>
               </q-item-section>
@@ -141,7 +141,8 @@ export default {
   data() {
     return {
       contactsMarginBottom: "q-mb-xl",
-      email: "irinaplissova@gmail.com",
+      emailLink: "irinaplissova@gmail.com",
+      emailCaption: "Напишите нам!",
       horizontal: false,
       minPoint: 50,
       maxPoint: 100,
@@ -151,8 +152,26 @@ export default {
       },
       splitterModel: 50,
       stackColumns: false,
-      whatsAppLink: "https://wa.me/77074626669"
+      whatsAppLink: "https://wa.me/77074626669",
+      whatsAppCaption: "What's App"
     };
+  },
+  created() {
+    this.$axios
+      .get("/api/v2/pages/3/")
+      .then(response => {
+        console.log(response);
+        // this.emailLink = response.data.url;
+        // this.emailCaption = response.data.caption;
+      })
+      .catch(() => {
+        this.$q.notify({
+          color: "negative",
+          position: "top",
+          message: "Запрос к бэкэнду не удался",
+          icon: "report_problem"
+        });
+      });
   },
   methods: {
     onResize({ width }) {

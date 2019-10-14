@@ -18,6 +18,19 @@ from wagtail.images.edit_handlers import ImageChooserPanel
 class HomePage(Page):
     """Домашняя страница."""
 
+    address = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        verbose_name='адрес агентства',
+    )
+    email = models.EmailField(
+        max_length=254,
+        null=True,
+        blank=False,
+        verbose_name='электронная почта',
+    )
+
     max_count = 1
 
     api_fields = [
@@ -26,24 +39,39 @@ class HomePage(Page):
 
     tours_panels = [
         MultiFieldPanel(
-            [InlinePanel('carousel_images', min_num=2, max_num=5,
-                         label='изображение')],
+            [InlinePanel('carousel', min_num=2, max_num=5,
+                         label='слайд для карусели')],
             heading='основные направления',
+        ),
+        MultiFieldPanel(
+            [InlinePanel('gallery', min_num=2, max_num=12,
+                         label='карточку для галереи')],
+            heading='дополнительные направления',
         ),
     ]
 
     contacts_panels = [
+        FieldPanel('address'),
+        MultiFieldPanel(
+            [InlinePanel('phone_numbers', label='номер телефона')],
+            heading='номера стационарных телефонов',
+        ),
+        MultiFieldPanel(
+            [InlinePanel('phone_numbers', label='номер телефона')],
+            heading='номера мобильных телефонов',
+        ),
         MultiFieldPanel(
             [InlinePanel('related_links', label='ссылку')],
             heading='ссылки на соцсети',
         ),
+        FieldPanel('email'),
     ]
 
     edit_handler = TabbedInterface([
-        ObjectList(tours_panels, heading='Туры'),
-        ObjectList(contacts_panels, heading='Контакты'),
-        ObjectList(Page.promote_panels, heading='Продвижение'),
-        ObjectList(Page.settings_panels, heading='Настройки',
+        ObjectList(tours_panels, heading='туры'),
+        ObjectList(contacts_panels, heading='контакты'),
+        ObjectList(Page.promote_panels, heading='продвижение'),
+        ObjectList(Page.settings_panels, heading='настройки',
                    classname="settings"),
     ])
 
@@ -52,11 +80,12 @@ class HomePage(Page):
         verbose_name_plural = 'домашние страницы'
 
 
-class HomePageCarouselImages(Orderable):
-    """От двух до пяти изображений для карусели домашней страницы."""
+class HomePageCarousel(Orderable):
+    """Карусель на домашней странице."""
 
-    page = ParentalKey(HomePage, related_name='carousel_images')
-    carousel_image = models.ForeignKey(
+    page = ParentalKey(HomePage, related_name='carousel')
+
+    slide_image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=False,
@@ -64,8 +93,62 @@ class HomePageCarouselImages(Orderable):
         related_name='+',
         verbose_name="изображение",
     )
+    slide_caption = models.CharField(
+        max_length=80,
+        blank=True,
+        verbose_name='подпись',
+    )
+    full_description = RichTextField(
+        max_length=400,
+        blank=True,
+        features=['bold', 'ol', 'ul', 'hr'],
+        verbose_name='подробное описание',
+    )
 
-    panels = [ImageChooserPanel('carousel_image')]
+    panels = [
+        ImageChooserPanel('slide_image'),
+        FieldPanel('slide_caption'),
+        FieldPanel('full_description'),
+    ]
+
+
+class HomePageGallery(Orderable):
+    """Галерея на домашней странице."""
+
+    page = ParentalKey(HomePage, related_name='gallery')
+
+    gallery_image = models.ForeignKey(
+        'wagtailimages.Image',
+        null=True,
+        blank=False,
+        on_delete=models.SET_NULL,
+        related_name='+',
+        verbose_name="изображение",
+    )
+    short_description = RichTextField(
+        max_length=255,
+        blank=True,
+        features=['bold', 'ol', 'ul', 'hr'],
+        verbose_name='краткое описание',
+    )
+
+    panels = [
+        ImageChooserPanel('gallery_image'),
+        FieldPanel('short_description'),
+    ]
+
+
+class HomePagePhone(Orderable):
+
+    page = ParentalKey(HomePage, on_delete=models.CASCADE,
+                       related_name='phone_numbers')
+
+    phone_number = models.CharField(
+        max_length=20,
+        null=True,
+        blank=False,
+        verbose_name='номер телефона',
+    )
 
 
 class HomePageRelatedLink(Orderable):
@@ -73,6 +156,7 @@ class HomePageRelatedLink(Orderable):
 
     page = ParentalKey(HomePage, on_delete=models.CASCADE,
                        related_name='related_links')
+
     caption = models.CharField(
         max_length=255,
         verbose_name='подпись',
