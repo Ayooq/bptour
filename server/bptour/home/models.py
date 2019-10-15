@@ -52,14 +52,10 @@ class HomePage(Page):
 
     contacts_panels = [
         FieldPanel('address'),
-        MultiFieldPanel(
-            [InlinePanel('phone_numbers', label='номер телефона')],
-            heading='номера стационарных телефонов',
-        ),
-        MultiFieldPanel(
-            [InlinePanel('phone_numbers', label='номер телефона')],
-            heading='номера мобильных телефонов',
-        ),
+        MultiFieldPanel([
+            InlinePanel('phone_numbers', min_num=2,
+                        max_num=6, label='номер телефона'),
+        ], heading='номера телефонов'),
         MultiFieldPanel(
             [InlinePanel('related_links', label='ссылку')],
             heading='ссылки на соцсети',
@@ -85,7 +81,7 @@ class HomePageCarousel(Orderable):
 
     page = ParentalKey(HomePage, related_name='carousel')
 
-    slide_image = models.ForeignKey(
+    image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=False,
@@ -93,7 +89,7 @@ class HomePageCarousel(Orderable):
         related_name='+',
         verbose_name="изображение",
     )
-    slide_caption = models.CharField(
+    caption = models.CharField(
         max_length=80,
         blank=True,
         verbose_name='подпись',
@@ -106,8 +102,8 @@ class HomePageCarousel(Orderable):
     )
 
     panels = [
-        ImageChooserPanel('slide_image'),
-        FieldPanel('slide_caption'),
+        ImageChooserPanel('image'),
+        FieldPanel('caption'),
         FieldPanel('full_description'),
     ]
 
@@ -117,7 +113,7 @@ class HomePageGallery(Orderable):
 
     page = ParentalKey(HomePage, related_name='gallery')
 
-    gallery_image = models.ForeignKey(
+    image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=False,
@@ -133,7 +129,7 @@ class HomePageGallery(Orderable):
     )
 
     panels = [
-        ImageChooserPanel('gallery_image'),
+        ImageChooserPanel('image'),
         FieldPanel('short_description'),
     ]
 
@@ -161,7 +157,11 @@ class HomePageRelatedLink(Orderable):
         max_length=255,
         verbose_name='подпись',
     )
-    url = models.URLField()
+    url = models.URLField(
+        null=True,
+        blank=True,
+        help_text='Адрес',
+    )
 
     panels = [
         FieldPanel('caption'),

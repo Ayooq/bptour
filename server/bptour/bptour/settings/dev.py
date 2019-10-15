@@ -14,6 +14,8 @@ INTERNAL_IPS = [
 ]
 
 INSTALLED_APPS += [
+    'wagtail.contrib.styleguide',
+
     'debug_toolbar',
     'django_extensions',
 ]

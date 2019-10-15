@@ -13,7 +13,7 @@ class CountriesPage(Page):
 
 
 class CountryDetailsPage(Page):
-    country_image = models.ForeignKey(
+    image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
         blank=False,
@@ -21,8 +21,6 @@ class CountryDetailsPage(Page):
         related_name='+',
         verbose_name='изображение',
     )
-    country_name = models.CharField(
-        verbose_name='название страны', max_length=80)
     description = RichTextField(
         blank=True,
         features=['bold', 'ol', 'ul', 'hr'],
@@ -37,14 +35,12 @@ class CountryDetailsPage(Page):
     parent_page_types = ['countries.CountriesPage']
 
     search_fields = Page.search_fields + [
-        index.SearchField('country_name'),
         index.SearchField('description'),
         index.SearchField('additional'),
     ]
 
-    content_panels = [
-        ImageChooserPanel('country_image'),
-        FieldPanel('country_name'),
+    content_panels = Page.content_panels + [
+        ImageChooserPanel('image'),
         FieldPanel('description', classname="full"),
         FieldPanel('additional', classname="full"),
     ]

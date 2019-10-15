@@ -1,40 +1,67 @@
 {% extends "base.html" %}
 
-{% load wagtailcore_tags wagtailimages_tags %}
+{% load wagtailimages_tags %}
 
 {% block content %}
-
-    {% image self.banner_image width-3560 as img %}
-
-    <div class="jumbotron" style="background-image: url('{{ img.url }}'); min-height: 400px; height: 40vh; background-size: cover; background-position: center top; display: flex; flex-direction: column; justify-content: center;">
-        <h1 class="display-4">{{ self.banner_title }}</h1>
-        <div class="lead">{{ self.banner_subtitle|richtext }}</div>
-        {% if self.banner_cta %}
-            <a class="btn btn-primary btn-lg" href="#" role="button">@todo</a>
-        {% endif %}
-    </div>
-
-    {# Example of an Orderable from home/models.py #}
-    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            {% for loop_cycle in self.carousel_images.all %}
-                {% image loop_cycle.carousel_image fill-900x400 as img %}
-                <div class="carousel-item{% if forloop.counter == 1 %} active{% endif %}">
-                    <img src="{{ img.url }}" class="d-block w-100" alt="{{ img.alt }}">
-                </div>
-            {% endfor %}
+  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+      <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+    
+      {% for slide in page.carousel.all %}
+        {% image slide.image fill-900x400 as img %}
+        <div class="carousel-item{% if forloop.counter == 1 %} active{% endif %}">
+          <img src="{{ img.url }}" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>{{ slide.caption }}</h5>
+            <p>{{ slide.full_description }}</p>
+          </div>
         </div>
-        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
+      {% endfor %}
+        
     </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
 
-    {% for block in page.content %}
-        {% include_block block %}
+  <div class="card-group">
+    {% for card in page.gallery.all %}
+      <div class="card bg-dark text-white">
+        {% image card.image fill-1024x768 as img %}
+        <img src="{{ img.url }}" class="card-img" alt="...">
+        <div class="card-img-overlay">
+          <p class="card-text">{{ card.short_description }}</p>
+        </div>
+      </div>
     {% endfor %}
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">{{ page.address }}</li>
+
+    {% for entry in page.phone_numbers.all %}
+      <li class="list-group-item">{{ entry.phone_number }}</li>
+    {% endfor %}
+    
+    <li class="list-group-item">
+      <a href="mailto:{{ page.email }}">Напишите нам!</a>
+    </li>
+
+    {% for entry in page.related_links.all %}
+      <li class="list-group-item">
+        <a href="{{ entry.url }}">{{ entry.caption }}</a>
+      </li>
+    {% endfor %}
+    
+  </ul>
+
 {% endblock %}
