@@ -48,15 +48,22 @@
   <ul class="list-group list-group-flush">
     <li class="list-group-item">{{ page.address }}</li>
 
-    {% for entry in page.phone_numbers.all %}
+    {% for entry in page.landline_phones.all %}
       <li class="list-group-item">{{ entry.phone_number }}</li>
     {% endfor %}
+
+    <br/>
+
+    {% for entry in page.mobile_phones.all %}
+      <li class="list-group-item">{{ entry.phone_number }}</li>
+    {% endfor %}
+
     
     <li class="list-group-item">
       <a href="mailto:{{ page.email }}">Напишите нам!</a>
     </li>
 
-    {% for entry in page.related_links.all %}
+    {% for entry in page.social_links.all %}
       <li class="list-group-item">
         <a href="{{ entry.url }}">{{ entry.caption }}</a>
       </li>

@@ -5,12 +5,10 @@ from wagtail.admin.edit_handlers import (
     InlinePanel,
     MultiFieldPanel,
     ObjectList,
-    PageChooserPanel,
-    StreamFieldPanel,
     TabbedInterface,
 )
 from wagtail.api import APIField
-from wagtail.core.fields import RichTextField, StreamField
+from wagtail.core.fields import RichTextField
 from wagtail.core.models import Page, Orderable
 from wagtail.images.edit_handlers import ImageChooserPanel
 
@@ -19,22 +17,26 @@ class HomePage(Page):
     """Домашняя страница."""
 
     address = models.CharField(
-        max_length=255,
+        max_length=254,
         null=True,
-        blank=False,
         verbose_name='адрес агентства',
     )
     email = models.EmailField(
-        max_length=254,
+        max_length=80,
         null=True,
-        blank=False,
         verbose_name='электронная почта',
     )
 
     max_count = 1
 
     api_fields = [
-        APIField('related_links'),
+        APIField('carousel'),
+        APIField('gallery'),
+        APIField('address'),
+        APIField('landline_phones'),
+        APIField('mobile_phones'),
+        APIField('social_links'),
+        APIField('email'),
     ]
 
     tours_panels = [
@@ -53,11 +55,13 @@ class HomePage(Page):
     contacts_panels = [
         FieldPanel('address'),
         MultiFieldPanel([
-            InlinePanel('phone_numbers', min_num=2,
-                        max_num=6, label='номер телефона'),
+            InlinePanel('landline_phones', min_num=1,
+                        max_num=3, label='стационарный телефон'),
+            InlinePanel('mobile_phones', min_num=1,
+                        max_num=3, label='мобильный телефон'),
         ], heading='номера телефонов'),
         MultiFieldPanel(
-            [InlinePanel('related_links', label='ссылку')],
+            [InlinePanel('social_links', label='ссылку')],
             heading='ссылки на соцсети',
         ),
         FieldPanel('email'),
@@ -71,31 +75,33 @@ class HomePage(Page):
                    classname="settings"),
     ])
 
+    def clean(self):
+            """Переписать значение заголовка перед сохранением."""
+            super().clean()
+            self.title = 'Главная'
+
     class Meta:
         verbose_name = 'домашняя страница'
-        verbose_name_plural = 'домашние страницы'
 
 
-class HomePageCarousel(Orderable):
-    """Карусель на домашней странице."""
+class CarouselSlide(Orderable):
+    """Слайд для карусели."""
 
     page = ParentalKey(HomePage, related_name='carousel')
 
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
-        blank=False,
         on_delete=models.SET_NULL,
         related_name='+',
         verbose_name="изображение",
     )
     caption = models.CharField(
         max_length=80,
-        blank=True,
         verbose_name='подпись',
     )
     full_description = RichTextField(
-        max_length=400,
+        max_length=511,
         blank=True,
         features=['bold', 'ol', 'ul', 'hr'],
         verbose_name='подробное описание',
@@ -108,21 +114,20 @@ class HomePageCarousel(Orderable):
     ]
 
 
-class HomePageGallery(Orderable):
-    """Галерея на домашней странице."""
+class GalleryCard(Orderable):
+    """Карточка для галереи."""
 
     page = ParentalKey(HomePage, related_name='gallery')
 
     image = models.ForeignKey(
         'wagtailimages.Image',
         null=True,
-        blank=False,
         on_delete=models.SET_NULL,
         related_name='+',
         verbose_name="изображение",
     )
     short_description = RichTextField(
-        max_length=255,
+        max_length=254,
         blank=True,
         features=['bold', 'ol', 'ul', 'hr'],
         verbose_name='краткое описание',
@@ -134,32 +139,49 @@ class HomePageGallery(Orderable):
     ]
 
 
-class HomePagePhone(Orderable):
+class LandlinePhone(Orderable):
+    """Номер стационарного телефона."""
 
-    page = ParentalKey(HomePage, on_delete=models.CASCADE,
-                       related_name='phone_numbers')
+    page = ParentalKey(HomePage, related_name='landline_phones')
 
     phone_number = models.CharField(
         max_length=20,
         null=True,
-        blank=False,
-        verbose_name='номер телефона',
+        unique=True,
+        verbose_name='стационарный телефон',
     )
 
+    panels = [FieldPanel('phone_number')]
 
-class HomePageRelatedLink(Orderable):
-    """Ссылка на внешний ресурс."""
 
-    page = ParentalKey(HomePage, on_delete=models.CASCADE,
-                       related_name='related_links')
+class MobilePhone(Orderable):
+    """Номер мобильного телефона."""
+
+    page = ParentalKey(HomePage, related_name='mobile_phones')
+
+    phone_number = models.CharField(
+        max_length=20,
+        null=True,
+        unique=True,
+        verbose_name='мобильный телефон',
+    )
+
+    panels = [FieldPanel('phone_number')]
+
+
+class SocialLink(Orderable):
+    """Ссылка на соцсеть."""
+
+    page = ParentalKey(HomePage, related_name='social_links')
 
     caption = models.CharField(
-        max_length=255,
+        max_length=80,
         verbose_name='подпись',
     )
     url = models.URLField(
         null=True,
         blank=True,
+        unique=True,
         help_text='Адрес',
     )
 
